@@ -28,11 +28,11 @@ export class DashboardComponent implements OnInit {
     items: 4,
     loop: true,
     margin: 15,
-    dots: true,
+    // dots: true,
     autoplay: true,
     autoplayTimeout: 5000,
     autoplayHoverPause: true,
-    nav: true,
+    // nav: true,
     responsive: {
         0: {
             items: 1
