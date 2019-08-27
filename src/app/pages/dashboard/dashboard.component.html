@@ -1,9 +1,7 @@
-<div>
-  <mat-toolbar>
-  </mat-toolbar>
+<div class="black-back">
   <owl-carousel-o [options]="customOptions">
     <ng-template carouselSlide *ngFor="let smryTask of smryTasks">
-      <mat-card style="text-align:center" class="example-card mat-elevation-z4" [class.card-back]="smryTask.priority=='high'" >
+      <mat-card class="example-card custom mat-elevation-z4" [class.card-back]="smryTask.priority=='high'" >
         <mat-card-header>
           <mat-card-title>{{smryTask.title}}</mat-card-title>
           <mat-card-subtitle>{{smryTask.description}}</mat-card-subtitle>

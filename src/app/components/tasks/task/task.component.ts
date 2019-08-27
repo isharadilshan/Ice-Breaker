@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material';
 
 import { TaskService } from '../../../shared/task.service';
 import { ProjectService } from '../../../shared/project.service';
@@ -21,7 +22,7 @@ export class TaskComponent implements OnInit {
 
   ];
 
-  constructor(private service: TaskService, private projectService: ProjectService, private notificationService: NotificationService) {
+  constructor(private service: TaskService, private projectService: ProjectService, private notificationService: NotificationService, public dialogRef: MatDialogRef<TaskComponent>) {
 
     this.form = new FormGroup({
       $key: new FormControl(null),
@@ -56,26 +57,24 @@ export class TaskComponent implements OnInit {
       priority: '',
       deadlineDate: '',
       deadlineTime: '',
-      addedTime: '',
       isDone: false
     });
   }
 
   onSubmit() {
     if(this.form.valid){
-      
       this.service.insertTask(this.form.value);
       this.form.reset();
       this.initializeFormGroup();
-      // this.notificationService.success(':: Submitted Successfullly');
-      // this.onClose();
+      this.notificationService.success(':: Submitted Successfullly');
+      this.onClose();
     }
   }
 
   onClose(){
     this.form.reset();
     this.service.initializeFormGroup();
-    // this.dialogRef.close();
+    this.dialogRef.close();
   }
 
 }

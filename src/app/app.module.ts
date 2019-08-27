@@ -6,6 +6,7 @@ import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { TaskComponent } from './components/tasks/task/task.component';
 import { TaskService } from './shared/task.service';
 import { environment } from '../environments/environment';
+import { TaskListComponent } from './components/tasks/task-list/task-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { environment } from '../environments/environment';
     DashboardComponent,
     AdminpanelComponent,
     TasksComponent,
-    TaskComponent
+    TaskComponent,
+    TaskListComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { environment } from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
   ],
-  providers: [TaskService],
-  bootstrap: [AppComponent]
+  providers: [TaskService,DatePipe],
+  bootstrap: [AppComponent],
+  entryComponents: [TaskComponent]
 })
 export class AppModule { }
