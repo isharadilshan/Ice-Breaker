@@ -1,0 +1,72 @@
+<form [formGroup]="form" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key">
+  
+        <mat-form-field>
+          <input formControlName="title" matInput placeholder="Title*">
+          <mat-error>This field is mandatory</mat-error>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <input formControlName="description" matInput placeholder="Description*">
+          <mat-error>This field is mandatory</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-select formControlName="project" placeholder="Project">
+            <mat-option>None</mat-option>
+            <ng-container *ngFor="let project of projectService.array">
+              <mat-option value="{{project.name}}">{{project.name}}</mat-option>
+            </ng-container>
+            
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <mat-select formControlName="category" placeholder="Category">
+            <mat-option value="pending">Pending</mat-option>
+            <mat-option value="summary">Summary</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+      </div>
+    </mat-grid-tile>
+  
+    <mat-grid-tile>
+      <div class="controles-container">
+  
+        <mat-form-field>
+          <mat-select formControlName="priority" placeholder="Priority">
+            <mat-option value="high">High</mat-option>
+            <mat-option value="medium">Medium</mat-option>
+            <mat-option value="law">Law</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input formControlName="deadlineDate" matInput [matDatepicker]="picker" placeholder="Deadline Date*">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput type="time" formControlName="deadlineTime"  placeholder="Time*">
+        </mat-form-field>
+
+        <!-- <input type="hidden" formControlName="addedTime"> -->
+  
+        <div class="add-bottom-padding">
+          <mat-checkbox formControlName="isDone">Is Task Done</mat-checkbox>
+        </div>
+  
+        <div class="button-row add-bottom-padding">
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+          <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+        </div>
+  
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>  
+</form> 

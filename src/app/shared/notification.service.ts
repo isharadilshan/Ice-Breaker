@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SummaryTaskServiceService {
+export class NotificationService {
 
   constructor() { }
 }
