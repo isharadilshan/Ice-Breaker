@@ -3,34 +3,39 @@ import { NgModule } from '@angular/core';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AdminpanelComponent } from './pages/adminpanel/adminpanel.component';
-import { SummaryComponent } from './components/summary/summary.component';
-import { PendingComponent } from './components/pending/pending.component';
-import { AsummaryComponent } from './components/asummary/asummary.component';
-import { ApendingComponent } from './components/apending/apending.component';
+import { TasksComponent } from './components/tasks/tasks.component';
+import { TaskComponent } from './components/tasks/task/task.component';
+import { TaskService } from './shared/task.service';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     AdminpanelComponent,
-    SummaryComponent,
-    PendingComponent,
-    AsummaryComponent,
-    ApendingComponent
+    TasksComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CarouselModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
   ],
-  providers: [],
+  providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
