@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { TaskService } from 'src/app/shared/task.service';
+import { Task } from '../../models/task';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,21 +10,25 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  tasks: Task [];
+  color: string;
+
+  constructor(private service: TaskService) { }
 
   ngOnInit() {
-  }
 
-  smryTasks = [
-    { title: 'Connect firebase', description: 'Implement firebase connection',priority: 'high' },
-    { title: 'Resonsive design', description: 'Add carousel design' },
-    { title: 'Connect firebase', description: 'Implement firebase connection' },
-    { title: 'Resonsive design', description: 'Add carousel design' },
-    { title: 'Connect firebase', description: 'Implement firebase connection',priority: 'high' },
-    { title: 'Resonsive design', description: 'Add carousel design' },
-    { title: 'Connect firebase', description: 'Implement firebase connection' },
-    { title: 'Resonsive design', description: 'Add carousel design' }
-  ];
+    this.service.getSummaryTasks().subscribe(
+      list => {
+        this.tasks = list.map(item => {
+          return {
+            $key: item.key,
+            ...item.payload.val()//destructuring
+          };
+        });
+        console.log(this.tasks);
+      }
+    );//observable to get data on init
+  }
 
   customOptions: OwlOptions = {
     items: 4,

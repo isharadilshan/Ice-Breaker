@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,16 @@ export class TaskService {
     return this.taskList.snapshotChanges(); //observable return from this function getTasks
   }
 
+  getSummaryTasks(){
+    this.taskList = this.firebase.list('tasks', ref => ref.orderByChild('category').equalTo('summary'));
+    return this.taskList.snapshotChanges(); //observable return from this function getTasks
+  }
+
+  getPendingTasks(){
+    this.taskList = this.firebase.list('tasks', ref => ref.orderByChild('category').equalTo('pending'));
+    return this.taskList.snapshotChanges(); //observable return from this function getTasks
+  }
+
   insertTask(task){
     this.taskList.push({
       title: task.title,
@@ -56,7 +67,7 @@ export class TaskService {
         project: task.project,
         category: task.category,
         priority: task.priority,
-        deadlineDate: task.deadlineDatw,
+        deadlineDate: task.deadlineDate =="" ? "" : this.datePipe.transform(task.deadlineDate, 'yyyy-MM-dd'),
         deadlineTime: task.deadlineTime,
         addedTime: task.addedTime,
         isDone: task.isDone
@@ -73,6 +84,7 @@ export class TaskService {
   }
 
   populateForm(task){
-    this.form.setValue(task);
+    console.log(task);
+    this.form.setValue(_.omit(task,'addedTime'));
   }
 }

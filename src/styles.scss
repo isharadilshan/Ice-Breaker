@@ -38,7 +38,12 @@ form.normal-form{
 snack-bar-container.success {
     background-color: #521ccf;
     color : #fff;
-  }
+}
+
+snack-bar-container.warn {
+    background-color: #e94040;
+    color : #fff;
+}
 
 snack-bar-container.notification simple-snack-bar{
     font-size: 18px !important;
@@ -90,3 +95,10 @@ padding-bottom: 0px;
     width: 32px;
 }
 
+.btn-dialog-close{
+    width: 45px;
+    min-width: 0px !important;
+    height: 40px;
+    padding: 0px !important;
+    background-color: #f75058;
+}

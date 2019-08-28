@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
+import * as _ from 'lodash';
 
 import { TaskService } from '../../../shared/task.service';
 import { ProjectService } from '../../../shared/project.service';
@@ -75,6 +76,11 @@ export class TaskComponent implements OnInit {
     this.form.reset();
     this.service.initializeFormGroup();
     this.dialogRef.close();
+  }
+
+  populateForm(task){
+    console.log(task);
+    this.form.setValue(_.omit(task,'addedTime'));
   }
 
 }
