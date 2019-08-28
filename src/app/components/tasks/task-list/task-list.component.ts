@@ -3,6 +3,7 @@ import { TaskService } from 'src/app/shared/task.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TaskComponent } from '../task/task.component';
+import { NotificationService } from 'src/app/shared/notification.service';
 
 @Component({
   selector: 'app-task-list',
@@ -11,7 +12,7 @@ import { TaskComponent } from '../task/task.component';
 })
 export class TaskListComponent implements OnInit {
 
-  constructor(private service: TaskService, private dialog: MatDialog) { }
+  constructor(private service: TaskService, private dialog: MatDialog, private notificationService: NotificationService) { }
 
   listData: MatTableDataSource<Task>;
   displayedColumns: string[] = ["title","description","project","deadlineDate","deadlineTime","priority","isDone","actions"];
@@ -67,6 +68,13 @@ export class TaskListComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
     this.dialog.open(TaskComponent,dialogConfig);
+  }
+
+  onDelete($key){
+    if(confirm('Are you sure to delete this record ?')){
+      this.service.deleteTask($key);
+      this.notificationService.warn('! Deleted Successfully');
+    }
   }
 
 }
