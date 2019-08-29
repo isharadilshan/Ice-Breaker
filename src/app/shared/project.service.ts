@@ -1,47 +1,51 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
+  form: FormGroup = new FormGroup({
+    $key: new FormControl(null),
+    title: new FormControl('',Validators.required),
+    code: new FormControl('',Validators.required)
+  });
+
+  constructor(private firebase: AngularFireDatabase) {}
+
   projectList: AngularFireList<any>;
-  projectListForm: AngularFireList<any>;
-  array = [];
 
-  constructor(private firebase: AngularFireDatabase) { 
-    this.projectListForm = this.firebase.list('project');
-    this.projectListForm.snapshotChanges().subscribe(
-      list => {
-        this.array = list.map(item => {
-          return {
-            $key: item.key,
-            ...item.payload.val()
-          };
-        });
-      });
+  initializeFormGroup(){  
+    this.form.setValue({
+      $key: null,
+      title: '',
+      code: ''
+    });
   }
 
-  getTasks(){
+  getProjects(){
     this.projectList = this.firebase.list('projects');
-    return this.projectList.snapshotChanges(); //observable return from this function getTasks
+    return this.projectList.snapshotChanges();
   }
 
-  insertTask(project){
+  insertProject(project){
     this.projectList.push({
-      name: project.name
+      title: project.title,
+      code: project.code
     });
   }
 
   updateProject(project){
-    this.projectList.update(project.key,
-    {
-      name: project.name
+    this.projectList.update(project.$key,{
+      title: project.title,
+      code: project.code
     });
   }
 
-  deleteProject($key: string){
-    this.projectList.remove($key);
+  populateForm(project){
+    this.form.setValue(project);
   }
+
 }

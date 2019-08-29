@@ -15,8 +15,12 @@ import { AdminpanelComponent } from './pages/adminpanel/adminpanel.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { TaskComponent } from './components/tasks/task/task.component';
 import { TaskService } from './shared/task.service';
+import { ProjectService } from './shared/project.service';
 import { environment } from '../environments/environment';
 import { TaskListComponent } from './components/tasks/task-list/task-list.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { ProjectComponent } from './components/projects/project/project.component';
+import { ProjectListComponent } from './components/projects/project-list/project-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,10 @@ import { TaskListComponent } from './components/tasks/task-list/task-list.compon
     AdminpanelComponent,
     TasksComponent,
     TaskComponent,
-    TaskListComponent
+    TaskListComponent,
+    ProjectsComponent,
+    ProjectComponent,
+    ProjectListComponent
   ],
   imports: [
     BrowserModule,
@@ -38,8 +45,8 @@ import { TaskListComponent } from './components/tasks/task-list/task-list.compon
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
   ],
-  providers: [TaskService,DatePipe],
+  providers: [TaskService,ProjectService,DatePipe],
   bootstrap: [AppComponent],
-  entryComponents: [TaskComponent]
+  entryComponents: [TaskComponent,ProjectComponent]
 })
 export class AppModule { }

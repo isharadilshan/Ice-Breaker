@@ -35,7 +35,6 @@ export class TaskListComponent implements OnInit {
         this.listData.paginator = this.paginator;
         // this.listData.filterPredicate = (data, filter) => {
         //   return this.displayedColumns.some(ele => {
-        //     console.log(ele, data);
         //     return ele != 'actions' && data[ele].toLowerCase().indexOf(filter) != -1;
         //   });
         // };

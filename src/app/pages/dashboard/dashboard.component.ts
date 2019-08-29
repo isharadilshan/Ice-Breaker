@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { TaskService } from 'src/app/shared/task.service';
 import { Task } from '../../models/task';
+import { database } from 'firebase';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,8 @@ import { Task } from '../../models/task';
 export class DashboardComponent implements OnInit {
 
   tasks: Task [];
+  ptasks: Task [];
+  pendingTasks: Task[];
   color: string;
 
   constructor(private service: TaskService) { }
@@ -25,7 +28,21 @@ export class DashboardComponent implements OnInit {
             ...item.payload.val()//destructuring
           };
         });
-        console.log(this.tasks);
+        this.summaryPriority(this.tasks);
+        // console.log(this.tasks);
+      }
+    );//observable to get data on init
+
+    this.service.getPendingTasks().subscribe(
+      list => {
+        this.pendingTasks = list.map(item => {
+          return {
+            $key: item.key,
+            ...item.payload.val()//destructuring
+          };
+        });
+        this.pendingPriority(this.pendingTasks);
+        // console.log(this.pendingTasks);
       }
     );//observable to get data on init
   }
@@ -56,6 +73,29 @@ export class DashboardComponent implements OnInit {
             items: 4
         }
     }
+  }
+
+  summaryPriority(tasks){
+
+    this.ptasks = tasks.forEach(element => {
+      let eta = element.deadlineTimestamp - Date.now();
+      let day2 = 172800000;
+      if (eta < 0){ 
+      console.log("inside the if condition");
+        element.priorityColor = 'Red';
+      }else if(eta > 0 && eta < day2){
+        element.priorityColor = 'Green';
+      }else{
+        element.priorityColor = 'Yellow';
+      }
+    });
+
+    console.log(this.ptasks);
+
+  }
+
+  pendingPriority(tasks){
+
   }
 
 }

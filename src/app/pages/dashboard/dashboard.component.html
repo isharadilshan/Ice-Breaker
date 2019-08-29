@@ -14,4 +14,16 @@
       </mat-card>
     </ng-template>  
   </owl-carousel-o>
+  <div *ngFor="let pndngTask of pendingTasks">
+
+    <mat-toolbar class="toolbar-back">
+      <span>{{pndngTask.title}}</span>
+      <span class="fill-remaining-space"></span>
+      <span>{{pndngTask.description}}</span>
+      <span class="fill-remaining-space"></span>
+      <span class="right-corner">{{pndngTask.deadlineDate}}</span>
+      <br>
+      <span class="right-corner">{{pndngTask.deadlineTime}}</span>
+    </mat-toolbar>
+  </div>
 </div>
