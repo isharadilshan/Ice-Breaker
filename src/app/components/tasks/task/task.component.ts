@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import * as _ from 'lodash';
 
@@ -14,8 +13,6 @@ import { NotificationService } from '../../../shared/notification.service';
 })
 export class TaskComponent implements OnInit {
 
-  form: FormGroup;
-
   projects = [
     {id: 3, value: 'Project 1'},
     {id: 4, value: 'Project 2'},
@@ -23,64 +20,31 @@ export class TaskComponent implements OnInit {
 
   ];
 
-  constructor(private service: TaskService, private projectService: ProjectService, private notificationService: NotificationService, public dialogRef: MatDialogRef<TaskComponent>) {
-
-    this.form = new FormGroup({
-      $key: new FormControl(null),
-      title: new FormControl('',Validators.required),
-      description: new FormControl('',Validators.required),
-      project: new FormControl('',Validators.required),
-      category: new FormControl('',Validators.required),
-      priority: new FormControl('',Validators.required),
-      deadlineDate: new FormControl('',Validators.required),
-      deadlineTime: new FormControl('',Validators.required),
-      isDone: new FormControl(false)
-    });
-
-  }
+  constructor(private service: TaskService, private projectService: ProjectService, private notificationService: NotificationService, public dialogRef: MatDialogRef<TaskComponent>) { }
 
   ngOnInit() {
     this.service.getTasks();
   }
 
   onClear(){
-    this.form.reset();
-    this.initializeFormGroup();
-  }
-
-  initializeFormGroup(){
-    this.form.setValue({
-      $key: null,
-      title: '',
-      description: '',
-      project: '',
-      category: '',
-      priority: '',
-      deadlineDate: '',
-      deadlineTime: '',
-      isDone: false
-    });
+    this.service.form.reset();
+    this.service.initializeFormGroup();
   }
 
   onSubmit() {
-    if(this.form.valid){
-      this.service.insertTask(this.form.value);
-      this.form.reset();
-      this.initializeFormGroup();
+    if(this.service.form.valid){
+      this.service.insertTask(this.service.form.value);
+      this.service.form.reset();
+      this.service.initializeFormGroup();
       this.notificationService.success(':: Submitted Successfullly');
       this.onClose();
     }
   }
 
   onClose(){
-    this.form.reset();
+    this.service.form.reset();
     this.service.initializeFormGroup();
     this.dialogRef.close();
-  }
-
-  populateForm(task){
-    console.log(task);
-    this.form.setValue(_.omit(task,'addedTime'));
   }
 
 }

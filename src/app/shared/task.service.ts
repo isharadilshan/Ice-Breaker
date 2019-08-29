@@ -9,25 +9,42 @@ import * as _ from 'lodash';
 })
 export class TaskService {
 
-  form: FormGroup;
+  form: FormGroup = new FormGroup({
+    $key: new FormControl(null),
+    title: new FormControl('',Validators.required),
+    description: new FormControl('',Validators.required),
+    project: new FormControl('',Validators.required),
+    category: new FormControl('',Validators.required),
+    priority: new FormControl('',Validators.required),
+    deadlineDate: new FormControl('',Validators.required),
+    deadlineTime: new FormControl('',Validators.required),
+    isDone: new FormControl(false)
+  });
 
-  constructor(private firebase: AngularFireDatabase, private datePipe: DatePipe) {
+  projects = [
+    {id: 3, value: 'Project 1'},
+    {id: 4, value: 'Project 2'},
+    {id: 5, value: 'Project 3'}
 
-    this.form = new FormGroup({
-      $key: new FormControl(null),
-      title: new FormControl('',Validators.required),
-      description: new FormControl('',Validators.required),
-      project: new FormControl('',Validators.required),
-      category: new FormControl('',Validators.required),
-      priority: new FormControl('',Validators.required),
-      deadlineDate: new FormControl('',Validators.required),
-      deadlineTime: new FormControl('',Validators.required),
-      isDone: new FormControl(false)
-    });
+  ];
 
-   }
+  constructor(private firebase: AngularFireDatabase, private datePipe: DatePipe) {}
 
   taskList: AngularFireList<any>;
+
+  initializeFormGroup(){
+    this.form.setValue({
+      $key: null,
+      title: '',
+      description: '',
+      project: '',
+      category: '',
+      priority: '',
+      deadlineDate: '',
+      deadlineTime: '',
+      isDone: false
+    });
+  }
 
   getTasks(){
     this.taskList = this.firebase.list('tasks');
@@ -52,6 +69,7 @@ export class TaskService {
       category: task.category,
       priority: task.priority,
       deadlineDate: task.deadlineDate =="" ? "" : this.datePipe.transform(task.deadlineDate, 'yyyy-MM-dd'),
+      deadlineTimeStamp: task.deadlineDate !== null ? Date.parse(task.deadlineDate) : null,
       deadlineTime: task.deadlineTime,
       addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
       isDone: task.isDone
@@ -67,7 +85,9 @@ export class TaskService {
         project: task.project,
         category: task.category,
         priority: task.priority,
+        priorityColor: '',
         deadlineDate: task.deadlineDate =="" ? "" : this.datePipe.transform(task.deadlineDate, 'yyyy-MM-dd'),
+        deadlineTimeStamp: task.deadlineDate !== null ? Date.parse(task.deadlineDate) : null,
         deadlineTime: task.deadlineTime,
         addedTime: task.addedTime,
         isDone: task.isDone
@@ -77,10 +97,6 @@ export class TaskService {
 
   deleteTask($key: string){
     this.taskList.remove($key);
-  }
-
-  initializeFormGroup(){
-      
   }
 
   populateForm(task){
