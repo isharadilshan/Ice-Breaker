@@ -58,7 +58,7 @@ export class TaskService {
 
   getPendingTasks(){
     this.taskList = this.firebase.list('tasks', ref => ref.orderByChild('category').equalTo('pending'));
-    return this.taskList.snapshotChanges(); //observable return from this function getTasks
+    return this.taskList.snapshotChanges(); //observable return from this function getTasks 
   }
 
   insertTask(task){
