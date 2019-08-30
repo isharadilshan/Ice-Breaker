@@ -34,7 +34,26 @@ export class PendingTasksComponent implements OnInit {
   counter = 5;
   list = [1,2,3,4,5];
 
-  constructor() { }
+  constructor() { 
+
+    // Array.prototype.rotate = function() {
+    //   if (this.lastRotIndex === undefined) this.lastRotIndex = -1;
+    //   this.lastRotIndex++;
+    //   this.lastRotIndex %= this.length;
+    //   return this[this.lastRotIndex];
+    // };
+    
+    // function rotateInWindow(arr, windowSize) {
+    //   const window = arr.slice(0, windowSize);
+    //   arr = arr.slice(windowSize);
+    //   setInterval(() => {
+    //     window.shift();
+    //     window.push(arr.rotate());
+    //     console.log(window);
+    //   }, 1000);
+    // }
+    
+  }
 
   ngOnInit() {
   }
