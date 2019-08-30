@@ -1,7 +1,9 @@
 <div class="black-back">
   <owl-carousel-o [options]="customOptions">
-    <ng-template carouselSlide *ngFor="let task of tasks">
-      <mat-card class="example-card mat-elevation-z4" [class.medium]="task.priority=='medium'" [class.high]="task.priority=='high'" [class.law]="task.priority=='law'">
+    <ng-template carouselSlide *ngFor="let task of ptasks">
+      <mat-card class="example-card mat-elevation-z4" [class.priorityHigh]="task.priority==='high' && task.deadline==='red'" [class.priorityHighM]="task.priority==='high' && task.deadline==='yellow'" [class.priorityHighL]="task.priority==='high' && task.deadline==='green'"
+       [class.priorityNormalH]="task.priority==='medium' && task.deadline==='red'" [class.priorityNormalM]="task.priority==='medium' && task.deadline==='yellow'" [class.priorityNormal]="task.priority==='medium' && task.deadline==='green'"
+       [class.priorityLawH]="task.priority==='law' && task.deadline==='red'" [class.priorityLawM]="task.priority==='law' && task.deadline==='yellow'" [class.priorityLaw]="task.priority==='law' && task.deadline==='green'" [class.overdue]="task.priority==='overdue' && task.deadline==='overdue'">
         <mat-card-header>
           <mat-card-title><h3>{{task.title}}</h3></mat-card-title>
           <mat-card-subtitle><h3>{{task.description}}</h3></mat-card-subtitle>
@@ -14,8 +16,7 @@
       </mat-card>
     </ng-template>  
   </owl-carousel-o>
-  <div *ngFor="let pndngTask of pendingTasks">
-
+  <!-- <div *ngFor="let pndngTask of pendingTasks">
     <mat-toolbar class="toolbar-back">
       <span>{{pndngTask.title}}</span>
       <span class="fill-remaining-space"></span>
@@ -25,5 +26,10 @@
       <br>
       <span class="right-corner">{{pndngTask.deadlineTime}}</span>
     </mat-toolbar>
+  </div> -->
+
+  <div class="container">
+    <app-pending-tasks></app-pending-tasks>
   </div>
+  
 </div>

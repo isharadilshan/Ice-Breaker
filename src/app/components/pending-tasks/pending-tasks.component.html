@@ -1,0 +1,11 @@
+<div class="buttons-container">
+  <button md-fab (click)="add()">
+    <i class="material-icons">&#xE147;</i>
+  </button>
+  <button md-fab (click)="remove(0)">
+    <i class="material-icons">&#xE872;</i>
+  </button>
+</div>
+<div @list class="list-container">
+  <div @items class="box" (click)="remove(i)" *ngFor="let item of list; let i=index;"></div>
+</div>

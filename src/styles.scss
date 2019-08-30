@@ -100,3 +100,25 @@ padding-bottom: 0px;
     padding: 0px !important;
     background-color: #f75058;
 }
+
+.buttons-container, .list-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}
+    
+.buttons-container {
+    flex-direction: row;  
+}
+    
+.list-container {
+    flex-direction: column;
+}
+    
+.box {
+    width: 100%;
+    height: 50px;
+    background-color: #5a4be6;
+    margin: 5px;
+}
+

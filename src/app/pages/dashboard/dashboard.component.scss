@@ -1,22 +1,23 @@
+$color-high-high: #f44336;
+$color-high-normal: #FF9800;
+$color-high-law: #FF9800;
+$color-normal-high: #FF9800;
+$color-normal-normal: #FFC107;
+$color-normal-law: #FFEB3B;
+$color-law-high: #FF9800;
+$color-law-normal: #FFEB3B;
+$color-law-law: #4CAF50;
+$color-overdue:#795548;
+
 .example-card {
     max-width: 400px;
     max-height: 400px;
 }
 
-.high{
-    background-color: red;
-}
-
-.medium{
-    background-color: green;
-}
-
-.law{
-    background-color: yellow;
-}
 h2{
     color: black;
 }
+
 h3{
     color: black;
 }
@@ -33,4 +34,44 @@ h3{
 
 .toolbar-back{
     background-color: bisque;
+}
+
+.priorityHigh{
+    background-color: $color-high-high;
+}
+
+.priorityHighM{
+    background-color: $color-high-normal;
+}
+
+.priorityHighL{
+    background-color: $color-high-law;
+}
+
+.priorityNormalH{
+    background-color: $color-normal-high;
+}
+
+.priorityNormalM{
+    background-color: $color-normal-normal;
+}
+
+.priorityNormal{
+    background-color: $color-normal-law;
+}
+
+.priorityLawH{
+    background-color: $color-law-high;
+}
+
+.priorityLawM{
+    background-color: $color-law-normal;
+}
+
+.priorityLaw{
+    background-color: $color-law-law;
+}
+
+.overdue{
+    background-color: $color-overdue;
 }

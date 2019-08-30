@@ -21,6 +21,7 @@ import { TaskListComponent } from './components/tasks/task-list/task-list.compon
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ProjectComponent } from './components/projects/project/project.component';
 import { ProjectListComponent } from './components/projects/project-list/project-list.component';
+import { PendingTasksComponent } from './components/pending-tasks/pending-tasks.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProjectListComponent } from './components/projects/project-list/project
     TaskListComponent,
     ProjectsComponent,
     ProjectComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    PendingTasksComponent
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   tasks: Task [];
   ptasks: Task [];
   pendingTasks: Task[];
+  priorityPending: Task[];
   color: string;
 
   constructor(private service: TaskService) { }
@@ -42,7 +43,7 @@ export class DashboardComponent implements OnInit {
           };
         });
         this.pendingPriority(this.pendingTasks);
-        // console.log(this.pendingTasks);
+        console.log(this.pendingTasks);
       }
     );//observable to get data on init
   }
@@ -77,20 +78,26 @@ export class DashboardComponent implements OnInit {
 
   summaryPriority(tasks){
 
-    this.ptasks = tasks.forEach(element => {
-      let eta = element.deadlineTimestamp - Date.now();
+    this.ptasks = tasks.map(element => {
+      let ets = element.deadlineTimeStamp - Date.now();
       let day2 = 172800000;
-      if (eta < 0){ 
-      console.log("inside the if condition");
-        element.priorityColor = 'Red';
-      }else if(eta > 0 && eta < day2){
-        element.priorityColor = 'Green';
+      let day1 = 86400000;
+      let day4 = 345600000;
+      console.log(ets);
+      if (ets < 0){ 
+        element.deadline = 'overdue';
+        element.priority = 'overdue';
+      }else if(ets > 0 && ets < day2){
+        element.deadline = 'red';
+      }else if(ets > day2 && ets < day4){
+        element.deadline = 'yellow';
       }else{
-        element.priorityColor = 'Yellow';
+        element.deadline = 'green';
       }
+      return element;
     });
-
     console.log(this.ptasks);
+    console.log(Date.now());
 
   }
 
