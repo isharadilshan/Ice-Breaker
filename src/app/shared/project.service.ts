@@ -44,6 +44,10 @@ export class ProjectService {
     });
   }
 
+  deleteProject($key: string){
+    this.projectList.remove($key);
+  }
+
   populateForm(project){
     this.form.setValue(project);
   }
