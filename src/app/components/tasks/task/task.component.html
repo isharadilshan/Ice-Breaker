@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <span>{{form.controls['$key'].value?"Modify Task":"Add Task"}}</span>
+  <!-- <span>{{form.controls['$key'].value?"Modify Task":"Add Task"}}</span> -->
   <span class="fill-remaining-space"></span>
   <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
@@ -22,8 +22,8 @@
         <mat-form-field>
           <mat-select formControlName="project" placeholder="Project">
             <mat-option>None</mat-option>
-            <ng-container *ngFor="let project of projectService.array">
-              <mat-option value="{{project.name}}">{{project.name}}</mat-option>
+            <ng-container *ngFor="let project of projects">
+              <mat-option value="{{project.value}}">{{project.value}}</mat-option>
             </ng-container>
             
           </mat-select>
@@ -65,7 +65,7 @@
         </div>
   
         <div class="button-row add-bottom-padding">
-          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
           <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
         </div>
   

@@ -21,13 +21,6 @@ export class TaskService {
     isDone: new FormControl(false)
   });
 
-  projects = [
-    {id: 3, value: 'Project 1'},
-    {id: 4, value: 'Project 2'},
-    {id: 5, value: 'Project 3'}
-
-  ];
-
   constructor(private firebase: AngularFireDatabase, private datePipe: DatePipe) {}
 
   taskList: AngularFireList<any>;
@@ -87,7 +80,6 @@ export class TaskService {
         priority: task.priority,
         priorityColor: '',
         deadlineDate: task.deadlineDate =="" ? "" : this.datePipe.transform(task.deadlineDate, 'yyyy-MM-dd'),
-        deadlineTimeStamp: task.deadlineDate !== null ? Date.parse(task.deadlineDate) : null,
         deadlineTime: task.deadlineTime,
         addedTime: task.addedTime,
         isDone: task.isDone
@@ -100,7 +92,6 @@ export class TaskService {
   }
 
   populateForm(task){
-    console.log(task);
-    this.form.setValue(_.omit(task,'addedTime'));
+    this.form.setValue(_.omit(task,'addedTime','deadlineTimeStamp'));
   }
 }

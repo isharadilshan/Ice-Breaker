@@ -61,6 +61,7 @@ export class TaskListComponent implements OnInit {
   }
 
   onEdit(row){
+    console.log('CLICKED: onEdit()');
     this.service.populateForm(row);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -72,7 +73,7 @@ export class TaskListComponent implements OnInit {
   onDelete($key){
     if(confirm('Are you sure to delete this record ?')){
       this.service.deleteTask($key);
-      this.notificationService.warn('! Deleted Successfully');
+      this.notificationService.warn('Deleted Successfully');
     }
   }
 

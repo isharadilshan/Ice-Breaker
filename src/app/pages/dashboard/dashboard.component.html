@@ -1,4 +1,4 @@
-<div class="black-back">
+ <div class="black-back">
   <owl-carousel-o [options]="customOptions">
     <ng-template carouselSlide *ngFor="let task of ptasks">
       <mat-card class="example-card mat-elevation-z4" [class.priorityHigh]="task.priority==='high' && task.deadline==='red'" [class.priorityHighM]="task.priority==='high' && task.deadline==='yellow'" [class.priorityHighL]="task.priority==='high' && task.deadline==='green'"
@@ -28,9 +28,9 @@
     </mat-toolbar>
   </div> -->
 
-  <div class="container black-back">
-    <!-- <app-pending-tasks></app-pending-tasks> -->
-    <app-ptasks></app-ptasks>
+  <div class="container black-back vert-car">
+    <app-pending-tasks></app-pending-tasks>
+    <!-- <app-ptasks></app-ptasks> -->
   </div>
   
 </div>

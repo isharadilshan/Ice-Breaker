@@ -22,7 +22,11 @@ export class PtasksComponent implements AfterViewInit {
         autoplay: true,
         spaceBetween: 10,
         // height: 600, config one slide height
-        autoHeight: true
+        autoHeight: true,
+        slidesPerView: 10,
+        slidesPerGroup: 1,
+        slidesOffsetBefore: 100,
+        slidesOffsetAfter: 100
     });
   }
 
