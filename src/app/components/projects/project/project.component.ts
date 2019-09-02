@@ -23,10 +23,14 @@ export class ProjectComponent implements OnInit {
 
   onSubmit(){
     if(this.service.form.valid){
-      this.service.insertProject(this.service.form.value);
+      if(!this.service.form.get('$key').value){
+        this.service.insertProject(this.service.form.value);
+      }else{
+        this.service.updateProject(this.service.form.value);
+      }
       this.service.form.reset();
       this.service.initializeFormGroup();
-      this.notificationService.success('::Submitted Successfully');
+      this.notificationService.success('Submitted Successfully');
       this.onClose();
     }
   }

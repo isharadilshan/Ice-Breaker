@@ -3,7 +3,7 @@
 @import '~swiper/dist/css/swiper.min.css';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
 div.container{
     margin: 0px 40px;
@@ -62,6 +62,7 @@ snack-bar-container.notification simple-snack-bar{
 
 .black-back{
     background-color: black;
+    height: 100%;
 }
 
 /* mat-table */

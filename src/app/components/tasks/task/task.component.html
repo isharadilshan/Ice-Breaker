@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <!-- <span>{{form.controls['$key'].value?"Modify Task":"Add Task"}}</span> -->
+  <span>{{service.form.controls['$key'].value?"Modify Task":"Add Task"}}</span>
   <span class="fill-remaining-space"></span>
   <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
@@ -23,7 +23,7 @@
           <mat-select formControlName="project" placeholder="Project">
             <mat-option>None</mat-option>
             <ng-container *ngFor="let project of projects">
-              <mat-option value="{{project.value}}">{{project.value}}</mat-option>
+              <mat-option value="{{project.title}}">{{project.title}}</mat-option>
             </ng-container>
             
           </mat-select>

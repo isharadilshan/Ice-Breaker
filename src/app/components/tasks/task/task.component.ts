@@ -15,18 +15,23 @@ import { FormGroup } from '@angular/forms';
 export class TaskComponent implements OnInit {
   form: FormGroup;
 
-  projects = [
-    {id: 3, value: 'Project 1'},
-    {id: 4, value: 'Project 2'},
-    {id: 5, value: 'Project 3'}
-
-  ];
+  projects = [];
 
   constructor(private service: TaskService, private projectService: ProjectService, private notificationService: NotificationService, public dialogRef: MatDialogRef<TaskComponent>) { }
 
   ngOnInit() {
     this.service.getTasks();
-    console.log(this.projects);
+    
+    this.projectService.getProjects().subscribe(
+      list => {
+        this.projects = list.map(item => {
+          return {
+            $key: item.key,
+            ...item.payload.val()//destructuring
+          };
+        });
+      }
+    );//observable to get data on init
   }
 
   onClear(){
@@ -40,7 +45,6 @@ export class TaskComponent implements OnInit {
         this.service.insertTask(this.service.form.value);
       }else{
         this.service.updateTask(this.service.form.value);
-        console.log("update");
       }
       this.service.form.reset();
       this.service.initializeFormGroup();

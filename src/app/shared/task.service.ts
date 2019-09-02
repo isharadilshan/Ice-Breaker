@@ -21,6 +21,7 @@ export class TaskService {
     isDone: new FormControl(false)
   });
 
+
   constructor(private firebase: AngularFireDatabase, private datePipe: DatePipe) {}
 
   taskList: AngularFireList<any>;
@@ -64,24 +65,23 @@ export class TaskService {
       deadlineDate: task.deadlineDate =="" ? "" : this.datePipe.transform(task.deadlineDate, 'yyyy-MM-dd'),
       deadlineTimeStamp: task.deadlineDate !== null ? Date.parse(task.deadlineDate) : null,
       deadlineTime: task.deadlineTime,
-      addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
+      // addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
       isDone: task.isDone
 
     });
   }
 
   updateTask(task){
-    this.taskList.update(task.key,
+    this.taskList.update(task.$key,
       {
         title: task.title,
         description: task.description,
         project: task.project,
         category: task.category,
         priority: task.priority,
-        priorityColor: '',
         deadlineDate: task.deadlineDate =="" ? "" : this.datePipe.transform(task.deadlineDate, 'yyyy-MM-dd'),
         deadlineTime: task.deadlineTime,
-        addedTime: task.addedTime,
+        // addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
         isDone: task.isDone
 
     });

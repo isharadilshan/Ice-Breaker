@@ -3,6 +3,7 @@ import { ProjectService } from 'src/app/shared/project.service';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialogConfig } from '@angular/material';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { ProjectComponent } from '../project/project.component';
+import { NotificationService } from 'src/app/shared/notification.service';
 
 @Component({
   selector: 'app-project-list',
@@ -18,7 +19,7 @@ export class ProjectListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private service: ProjectService, private dialog: MatDialog) { }
+  constructor(private service: ProjectService, private dialog: MatDialog, private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.service.getProjects().subscribe(
@@ -67,6 +68,13 @@ export class ProjectListComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "40%";
     this.dialog.open(ProjectComponent,dialogConfig);
+  }
+
+  onDelete($key){
+    if(confirm('Are you sure to delete this record ?')){
+      this.service.deleteProject($key);
+      this.notificationService.warn('Deleted Successfully');
+    }
   }
 
 }
