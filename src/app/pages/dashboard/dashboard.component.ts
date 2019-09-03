@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { TaskService } from 'src/app/shared/task.service';
 import { Task } from '../../models/task';
-import { database } from 'firebase';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,8 +12,6 @@ export class DashboardComponent implements OnInit {
 
   tasks: Task [];
   ptasks: Task [];
-  pendingTasks: Task[];
-  priorityPending: Task[];
   color: string;
 
   constructor(private service: TaskService) { }
@@ -34,18 +31,6 @@ export class DashboardComponent implements OnInit {
       }
     );//observable to get data on init
 
-    this.service.getPendingTasks().subscribe(
-      list => {
-        this.pendingTasks = list.map(item => {
-          return {
-            $key: item.key,
-            ...item.payload.val()//destructuring
-          };
-        });
-        this.pendingPriority(this.pendingTasks);
-        console.log(this.pendingTasks);
-      }
-    );//observable to get data on init
   }
 
   customOptions: OwlOptions = {
@@ -54,8 +39,7 @@ export class DashboardComponent implements OnInit {
     margin: 15,
     // dots: true,
     autoplay: true,
-    autoplayTimeout: 5000,
-    autoplayHoverPause: true,
+    autoplayTimeout: 2000,
     // nav: true,
     responsive: {
         0: {
@@ -98,10 +82,6 @@ export class DashboardComponent implements OnInit {
     });
     console.log(this.ptasks);
     console.log(Date.now());
-
-  }
-
-  pendingPriority(tasks){
 
   }
 

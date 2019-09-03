@@ -65,15 +65,15 @@ export class PendingTasksComponent implements OnInit, AfterViewInit {
     //     console.log("Ishara Dilshan");
     //   }, 5000);
     // }
-    let i;
-    for(i=0;i<100;i++){
-        setInterval(function() {
-          this.add();
-        }, 5000);
-        setInterval(function() {
-          this.remove(0);
-        }, 5000);
-    }
+    // let i;
+    // for(i=0;i<100;i++){
+    //     setInterval(function() {
+    //       this.add();
+    //     }, 5000);
+    //     setInterval(function() {
+    //       this.remove(0);
+    //     }, 5000);
+    // }
   }
 
   add(){
