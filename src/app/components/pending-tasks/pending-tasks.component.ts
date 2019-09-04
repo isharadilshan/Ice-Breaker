@@ -38,26 +38,7 @@ export class PendingTasksComponent implements OnInit {
   pendingTasks: Task[];
   priorityPendings: Task[]=[];
 
-  constructor(private service: TaskService) { 
-
-    // Array.prototype.rotate = function() {
-    //   if (this.lastRotIndex === undefined) this.lastRotIndex = -1;
-    //   this.lastRotIndex++;
-    //   this.lastRotIndex %= this.length;
-    //   return this[this.lastRotIndex];
-    // };
-    
-    // function rotateInWindow(arr, windowSize) {
-    //   const window = arr.slice(0, windowSize);
-    //   arr = arr.slice(windowSize);
-    //   setInterval(() => {
-    //     window.shift();
-    //     window.push(arr.rotate());
-    //     console.log(window);
-    //   }, 1000);
-    // }
-    
-  }
+  constructor(private service: TaskService) {}
 
   ngOnInit() {
 
@@ -73,13 +54,23 @@ export class PendingTasksComponent implements OnInit {
       }
     );//observable to get data on init
 
+    let item;
+
     timer(0, 3000)
     .pipe(
       tap(v => {
-        // this.priorityPendings.shift();
-        let item = this.priorityPendings.shift();
-        //should implement method for set interval function
+
+        item = this.priorityPendings.shift();
+        
+      })
+    ).subscribe();
+
+    timer(0, 3000)
+    .pipe(
+      tap(v => {
+        
         this.priorityPendings.push(item);
+        
       })
     ).subscribe();
 
@@ -104,7 +95,6 @@ export class PendingTasksComponent implements OnInit {
       }
       return element;
     });
-    // console.log(this.priorityPendings);
 
   }
 
