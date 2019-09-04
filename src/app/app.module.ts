@@ -22,7 +22,6 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { ProjectComponent } from './components/projects/project/project.component';
 import { ProjectListComponent } from './components/projects/project-list/project-list.component';
 import { PendingTasksComponent } from './components/pending-tasks/pending-tasks.component';
-import { PtasksComponent } from './components/ptasks/ptasks.component';
 import { LoginComponent } from './pages/login/login/login.component';
 
 @NgModule({
@@ -37,7 +36,6 @@ import { LoginComponent } from './pages/login/login/login.component';
     ProjectComponent,
     ProjectListComponent,
     PendingTasksComponent,
-    PtasksComponent,//check before final 
     LoginComponent
   ],
   imports: [

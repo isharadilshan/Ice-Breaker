@@ -37,10 +37,9 @@ export class DashboardComponent implements OnInit {
     items: 4,
     loop: true,
     margin: 15,
-    // dots: true,
     autoplay: true,
-    autoplayTimeout: 2000,
-    // nav: true,
+    autoplayTimeout: 3000,
+    autoplaySpeed: 2000,
     responsive: {
         0: {
             items: 1
@@ -67,7 +66,6 @@ export class DashboardComponent implements OnInit {
       let day2 = 172800000;
       let day1 = 86400000;
       let day4 = 345600000;
-      console.log(ets);
       if (ets < 0){ 
         element.deadline = 'overdue';
         element.priority = 'overdue';
@@ -80,8 +78,6 @@ export class DashboardComponent implements OnInit {
       }
       return element;
     });
-    console.log(this.ptasks);
-    console.log(Date.now());
 
   }
 
