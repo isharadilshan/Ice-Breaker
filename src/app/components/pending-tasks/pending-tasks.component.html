@@ -1,11 +1,15 @@
-<div class="buttons-container">
-  <button md-fab (click)="add()">
-    <i class="material-icons">&#xE147;</i>
-  </button>
-  <button md-fab (click)="remove(0)">
-    <i class="material-icons">&#xE872;</i>
-  </button>
-</div>
 <div @list class="list-container">
-  <div @items class="box" (click)="remove(i)" *ngFor="let item of list; let i=index;"></div>
+  <div @items class="box" *ngFor="let task of priorityPendings; let i=index;">
+      <mat-toolbar [class.priorityHigh]="task.priority==='high' && task.deadline==='red'" [class.priorityHighM]="task.priority==='high' && task.deadline==='yellow'" [class.priorityHighL]="task.priority==='high' && task.deadline==='green'"
+      [class.priorityNormalH]="task.priority==='medium' && task.deadline==='red'" [class.priorityNormalM]="task.priority==='medium' && task.deadline==='yellow'" [class.priorityNormal]="task.priority==='medium' && task.deadline==='green'"
+      [class.priorityLawH]="task.priority==='law' && task.deadline==='red'" [class.priorityLawM]="task.priority==='law' && task.deadline==='yellow'" [class.priorityLaw]="task.priority==='law' && task.deadline==='green'" [class.overdue]="task.priority==='overdue' && task.deadline==='overdue'">
+        <span>{{task.title}}</span>
+        <span class="fill-remaining-space"></span>
+        <span>{{task.description}}</span>
+        <span class="fill-remaining-space"></span>
+        <span class="right-corner">{{task.deadlineDate}}</span>
+        <span>@</span>
+        <span class="right-corner">{{task.deadlineTime}}</span>
+      </mat-toolbar>
+  </div>
 </div>

@@ -1,5 +1,9 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate, query, stagger, animateChild } from '@angular/animations';
+import { timer } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { Task } from 'src/app/models/task';
+import { TaskService } from 'src/app/shared/task.service';
 
 
 @Component({
@@ -29,12 +33,12 @@ import { trigger, transition, style, animate, query, stagger, animateChild } fro
     ])
   ]
 })
-export class PendingTasksComponent implements OnInit, AfterViewInit {
+export class PendingTasksComponent implements OnInit {
 
-  counter = 5;
-  list = [1,2,3,4,5];
+  pendingTasks: Task[];
+  priorityPendings: Task[]=[];
 
-  constructor() { 
+  constructor(private service: TaskService) { 
 
     // Array.prototype.rotate = function() {
     //   if (this.lastRotIndex === undefined) this.lastRotIndex = -1;
@@ -56,33 +60,52 @@ export class PendingTasksComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
+    this.service.getPendingTasks().subscribe(
+      list => {
+        this.pendingTasks = list.map(item => {
+          return {
+            $key: item.key,
+            ...item.payload.val()//destructuring
+          };
+        });
+        this.pendingPriority(this.pendingTasks);
+      }
+    );//observable to get data on init
+
+    timer(0, 3000)
+    .pipe(
+      tap(v => {
+        // this.priorityPendings.shift();
+        let item = this.priorityPendings.shift();
+        //should implement method for set interval function
+        this.priorityPendings.push(item);
+      })
+    ).subscribe();
+
   }
 
-  ngAfterViewInit() {
-    
-    // while(true){
-    //   setInterval(function() {
-    //     console.log("Ishara Dilshan");
-    //   }, 5000);
-    // }
-    // let i;
-    // for(i=0;i<100;i++){
-    //     setInterval(function() {
-    //       this.add();
-    //     }, 5000);
-    //     setInterval(function() {
-    //       this.remove(0);
-    //     }, 5000);
-    // }
-  }
+  pendingPriority(pendingTasks){
 
-  add(){
-    this.list.push(this.counter++);
-  }
+    this.priorityPendings = pendingTasks.map(element => {
+      let ets = element.deadlineTimeStamp - Date.now();
+      let day2 = 172800000;
+      let day1 = 86400000;
+      let day4 = 345600000;
+      if (ets < 0){ 
+        element.deadline = 'overdue';
+        element.priority = 'overdue';
+      }else if(ets > 0 && ets < day2){
+        element.deadline = 'red';
+      }else if(ets > day2 && ets < day4){
+        element.deadline = 'yellow';
+      }else{
+        element.deadline = 'green';
+      }
+      return element;
+    });
+    // console.log(this.priorityPendings);
 
-  remove(index) {
-    if(!this.list.length) return;
-    this.list.splice(index, 1);
   }
 
 }
