@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { DatePipe } from '@angular/common';
 
@@ -22,7 +23,8 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { ProjectComponent } from './components/projects/project/project.component';
 import { ProjectListComponent } from './components/projects/project-list/project-list.component';
 import { PendingTasksComponent } from './components/pending-tasks/pending-tasks.component';
-import { LoginComponent } from './pages/login/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { LoginComponent } from './pages/login/login/login.component';
     ProjectComponent,
     ProjectListComponent,
     PendingTasksComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { LoginComponent } from './pages/login/login/login.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [TaskService,ProjectService,DatePipe],
   bootstrap: [AppComponent],

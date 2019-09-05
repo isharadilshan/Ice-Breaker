@@ -83,6 +83,7 @@ export class PendingTasksComponent implements OnInit {
       let day2 = 172800000;
       let day1 = 86400000;
       let day4 = 345600000;
+
       if (ets < 0){ 
         element.deadline = 'overdue';
         element.priority = 'overdue';
