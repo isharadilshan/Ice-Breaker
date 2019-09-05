@@ -1,0 +1,25 @@
+<!-- <div class="main-div">
+  <mat-card class="example-card max-card" layout="row" layout-align="center center">
+    <mat-card-header>
+      <div class="login-box-header" layout="row" layout-align="center center">
+          <img src="assets/download.png">
+      </div>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-raised-button (click)="user.login()" color="primary">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</div> -->
+<div *ngIf="user.uid | async as uid; else login">
+  The user is logged in. {{uid}}
+
+  <div *ngIf="user.isAdmin | async">
+    The user also has ADMIN super powers...
+  </div>
+  <div ><button (click)="user.logout()">Log Out</button></div>
+
+</div>
+
+<ng-template #login>
+  You need to login..<button (click)="user.login()">Login</button>
+</ng-template>
