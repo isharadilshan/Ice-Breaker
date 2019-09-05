@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { of as observableOf } from 'rxjs';
+import { of as observableOf, Observable } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { auth } from 'firebase'; 
-import { NullTemplateVisitor } from '@angular/compiler';
+import { AngularFireDatabase } from 'angularfire2/database';
  
 @Injectable({
   providedIn: 'root'
@@ -20,9 +20,27 @@ export class UserService {
     })
   );
    
-  isAdmin = observableOf(true);
+  isAdmin: Observable<boolean>= this.uid.pipe(
+    switchMap(uid => {
+      if(!uid){
+        return observableOf(false);
+      }else{
+        return this.db.object<boolean>('/admin/' + uid).valueChanges();
+      }
+    })
+  )
 
-  constructor(private afAuth: AngularFireAuth) { }
+  isSuperAdmin: Observable<boolean>= this.uid.pipe(
+    switchMap(uid => {
+      if(!uid){
+        return observableOf(false);
+      }else{
+        return this.db.object<boolean>('/superadmin/' + uid).valueChanges();
+      }
+    })
+  )
+
+  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) { }
 
   login(){
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());

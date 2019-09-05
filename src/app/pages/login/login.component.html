@@ -16,6 +16,11 @@
   <div *ngIf="user.isAdmin | async">
     The user also has ADMIN super powers...
   </div>
+
+  <div *ngIf="user.isSuperAdmin | async">
+    The user also has SUPER ADMIN super powers...
+  </div>
+
   <div ><button (click)="user.logout()">Log Out</button></div>
 
 </div>
