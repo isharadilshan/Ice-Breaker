@@ -25,6 +25,12 @@ import { ProjectListComponent } from './components/projects/project-list/project
 import { PendingTasksComponent } from './components/pending-tasks/pending-tasks.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { SigninComponent } from './pages/signin/signin.component';
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
+import { AuthService } from './shared/auth.service';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +45,11 @@ import { SignupComponent } from './pages/signup/signup.component';
     ProjectListComponent,
     PendingTasksComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    SigninComponent,
+    ForgetPasswordComponent,
+    VerifyEmailComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -53,8 +63,8 @@ import { SignupComponent } from './pages/signup/signup.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [TaskService,ProjectService,DatePipe],
-  bootstrap: [AppComponent],
-  entryComponents: [TaskComponent,ProjectComponent]
+  providers: [ TaskService, ProjectService, DatePipe, AuthService, AngularFirestore ],
+  bootstrap: [ AppComponent ],
+  entryComponents: [ TaskComponent, ProjectComponent ]
 })
 export class AppModule { }

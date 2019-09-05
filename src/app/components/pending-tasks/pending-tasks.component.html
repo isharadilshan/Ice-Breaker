@@ -1,18 +1,17 @@
 <div @list class="list-container">
   <div @items class="box" *ngFor="let task of priorityPendings;">
-      <mat-toolbar [class.priorityHigh]="task.priority==='high' && task.deadline==='red'" [class.priorityHighM]="task.priority==='high' && task.deadline==='yellow'" [class.priorityHighL]="task.priority==='high' && task.deadline==='green'"
-      [class.priorityNormalH]="task.priority==='medium' && task.deadline==='red'" [class.priorityNormalM]="task.priority==='medium' && task.deadline==='yellow'" [class.priorityNormal]="task.priority==='medium' && task.deadline==='green'"
-      [class.priorityLawH]="task.priority==='law' && task.deadline==='red'" [class.priorityLawM]="task.priority==='law' && task.deadline==='yellow'" [class.priorityLaw]="task.priority==='law' && task.deadline==='green'" [class.overdue]="task.priority==='overdue' && task.deadline==='overdue'">
-        <span class="font-large">{{task.title}}</span>
-        <span class="fill-remaining-space"></span>
-        <span class="font-large">{{task.description}}</span>
-        <span class="fill-remaining-space"></span>
-        <span class="marg-right">@{{task.deadlineTime}}</span>
-        <mat-list>
-          <mat-list-item><span class="font-large">{{task.deadlineDate | date: 'dd'}}</span></mat-list-item>
-          <mat-list-item><h1>{{task.deadlineDate | date: 'MMM'}}</h1></mat-list-item>
-        </mat-list>
-      </mat-toolbar>
-      <span>@</span>
+    <mat-toolbar [class.priorityHigh]="task.priority==='high' && task.deadline==='red'" [class.priorityHighM]="task.priority==='high' && task.deadline==='yellow'" [class.priorityHighL]="task.priority==='high' && task.deadline==='green'"
+    [class.priorityNormalH]="task.priority==='medium' && task.deadline==='red'" [class.priorityNormalM]="task.priority==='medium' && task.deadline==='yellow'" [class.priorityNormal]="task.priority==='medium' && task.deadline==='green'"
+    [class.priorityLawH]="task.priority==='law' && task.deadline==='red'" [class.priorityLawM]="task.priority==='law' && task.deadline==='yellow'" [class.priorityLaw]="task.priority==='law' && task.deadline==='green'" [class.overdue]="task.priority==='overdue' && task.deadline==='overdue'">
+      <span class="font-large">{{task.title}}</span>
+      <span class="fill-remaining-space"></span>
+      <span class="font-large">{{task.description}}</span>
+      <span class="fill-remaining-space"></span>
+      <span class="marg-right">@{{task.deadlineTime}}</span>
+      <mat-list>
+        <mat-list-item><span class="font-large">{{task.deadlineDate | date: 'dd'}}</span></mat-list-item>
+        <mat-list-item><h1>{{task.deadlineDate | date: 'MMM'}}</h1></mat-list-item>
+      </mat-list>
+    </mat-toolbar>
   </div>
 </div>
