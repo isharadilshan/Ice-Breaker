@@ -8,7 +8,7 @@ $color-law-high: #FF9800;
 $color-law-normal: #FFEB3B;
 $color-law-law: #4CAF50;
 $color-overdue:#795548;
-$back-color:#90CAF9;
+$back-color: #3F51B5;
 
 .example-card {
     max-width: 400px;
@@ -88,4 +88,8 @@ h3{
 
 .margn{
     margin-top: 5px;
+}
+
+.mat-card-content {
+    margin-top: -10px;
 }
