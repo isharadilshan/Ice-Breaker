@@ -1,4 +1,37 @@
-<div class="displayTable">
+<mat-card class="sign-in-card">
+  <mat-card-header>
+    <mat-card-title>Sign In</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+            <input matInput placeholder="Username" [(ngModel)]="username" name="username" id="username" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+        <td><mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" id="password" required>
+        </mat-form-field></td>
+      </tr></table>
+    </form>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="authService.SignIn(username, password)" color="primary">Login</button>
+    <div class="forgotPassword">
+      <span routerLink="/forgot-password">Forgot Password?</span>
+    </div>
+    <div class="redirectToLogin">
+      <span>Don't have an account?<span class="redirect" routerLink="/register-user"> Sign Up</span></span>
+    </div>
+  </mat-card-actions>
+</mat-card>
+
+<!-- <div class="displayTable">
   <div class="displayTableCell">
 
     <div class="authBlock">
@@ -11,7 +44,6 @@
         <input type="password" class="formControl" placeholder="Password" #userPassword required>
       </div>
 
-      <!-- Calling SignIn Api from AuthService -->
       <div class="formGroup">
         <input type="button" class="btn btnPrimary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
       </div>
@@ -20,7 +52,6 @@
         <span class="or"><span class="orInner">Or</span></span>
       </div>
 
-      <!-- Calling GoogleAuth Api from AuthService -->
       <div class="formGroup">
         <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
           <i class="fab fa-google-plus-g"></i>
@@ -38,4 +69,4 @@
     </div>
 
   </div>
-</div>
+</div> -->
