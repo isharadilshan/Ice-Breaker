@@ -6,6 +6,6 @@
     <app-projects></app-projects>
   </mat-tab>
   <mat-tab  label="Log-Out"  class="my-tab">
-    <app-logout></app-logout>
+    <button mat-raised-button color="warn" (click)="authService.SignOut()">Log Out<mat-icon>power_settings_new</mat-icon></button>
   </mat-tab>
 </mat-tab-group>
