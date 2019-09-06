@@ -17,7 +17,7 @@ export class TaskComponent implements OnInit {
 
   projects = [];
 
-  constructor(private service: TaskService, private projectService: ProjectService, private notificationService: NotificationService, public dialogRef: MatDialogRef<TaskComponent>) { }
+  constructor(public service: TaskService, private projectService: ProjectService, private notificationService: NotificationService, public dialogRef: MatDialogRef<TaskComponent>) { }
 
   ngOnInit() {
     this.service.getTasks();

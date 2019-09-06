@@ -10,7 +10,7 @@ import { NotificationService } from 'src/app/shared/notification.service';
 })
 export class ProjectComponent implements OnInit {
 
-  constructor(private service: ProjectService, private notificationService: NotificationService, public dialogRef: MatDialogRef<ProjectComponent>) { }
+  constructor(public service: ProjectService, private notificationService: NotificationService, public dialogRef: MatDialogRef<ProjectComponent>) { }
 
   ngOnInit() {
     this.service.getProjects();
