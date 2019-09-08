@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'admin-panel', component: AdminpanelComponent, canActivate: [ AuthGuard ] },
   { path: 'sign-in', component: SigninComponent, canActivate: [ SecuredInnerPagesGuard ] },
   { path: 'sign-up', component: SignupComponent, canActivate: [ SecuredInnerPagesGuard ] },
-  { path: 'forget-password', component: ForgetPasswordComponent, canActivate: [ SecuredInnerPagesGuard ] },
+  { path: 'forgot-password', component: ForgetPasswordComponent, canActivate: [ SecuredInnerPagesGuard ] },
   { path: 'verify-email', component: VerifyEmailComponent, canActivate: [ SecuredInnerPagesGuard ] },
   { path: 'login', component: LoginComponent },
   

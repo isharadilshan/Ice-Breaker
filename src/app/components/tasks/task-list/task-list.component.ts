@@ -4,6 +4,7 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TaskComponent } from '../task/task.component';
 import { NotificationService } from 'src/app/shared/notification.service';
+import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-task-list',
@@ -12,7 +13,7 @@ import { NotificationService } from 'src/app/shared/notification.service';
 })
 export class TaskListComponent implements OnInit {
 
-  constructor(private service: TaskService, private dialog: MatDialog, private notificationService: NotificationService) { }
+  constructor(public authService: AuthService,private service: TaskService, private dialog: MatDialog, private notificationService: NotificationService) { }
 
   listData: MatTableDataSource<Task>;
   displayedColumns: string[] = ["title","description","project","deadlineDate","deadlineTime","priority","isDone","actions"];
