@@ -15,18 +15,6 @@
       <div class="formGroup">
         <input type="button" class="btn btnPrimary" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
       </div>
-
-      <div class="formGroup">
-        <span class="or"><span class="orInner">Or</span></span>
-      </div>
-
-      <!-- Continue with Google -->
-      <div class="formGroup">
-        <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
-          <i class="fab fa-google-plus-g"></i>
-          Continue with Google
-        </button>
-      </div>
       
     </div>
 
