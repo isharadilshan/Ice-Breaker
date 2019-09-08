@@ -17,8 +17,8 @@ export class ProjectListComponent implements OnInit {
   displayedColumns: string[] = ['title','code','actions'];
   searchKey: string;
 
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(public authService: AuthService, private service: ProjectService, private dialog: MatDialog, private notificationService: NotificationService) { }
 

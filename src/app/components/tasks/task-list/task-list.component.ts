@@ -18,8 +18,8 @@ export class TaskListComponent implements OnInit {
   listData: MatTableDataSource<Task>;
   displayedColumns: string[] = ["title","description","project","deadlineDate","deadlineTime","priority","isDone","actions"];
 
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   searchKey: string;
 
   ngOnInit() {
