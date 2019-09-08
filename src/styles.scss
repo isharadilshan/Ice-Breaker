@@ -73,6 +73,8 @@ mat-footer-row mat-footer-cell{
 /* filter controls */
 .search-div{
     margin: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .search-form-field{

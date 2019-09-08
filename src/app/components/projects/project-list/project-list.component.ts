@@ -4,6 +4,7 @@ import { MatTableDataSource, MatSort, MatPaginator, MatDialogConfig } from '@ang
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { ProjectComponent } from '../project/project.component';
 import { NotificationService } from 'src/app/shared/notification.service';
+import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-project-list',
@@ -19,7 +20,7 @@ export class ProjectListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private service: ProjectService, private dialog: MatDialog, private notificationService: NotificationService) { }
+  constructor(public authService: AuthService, private service: ProjectService, private dialog: MatDialog, private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.service.getProjects().subscribe(

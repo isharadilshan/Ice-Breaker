@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ice-breaker-78d79": {
+      "hosting": {
+        "Project": [
+          "ice-breaker-78d79"
+        ]
+      }
+    }
+  }
+}
