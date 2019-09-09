@@ -65,7 +65,7 @@ export class TaskService {
       deadlineDate: task.deadlineDate =="" ? "" : this.datePipe.transform(task.deadlineDate, 'yyyy-MM-dd'),
       deadlineTimeStamp: task.deadlineDate !== null ? Date.parse(task.deadlineDate) : null,
       deadlineTime: task.deadlineTime,
-      // addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
+      addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
       isDone: task.isDone
 
     });

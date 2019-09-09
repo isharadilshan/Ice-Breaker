@@ -1,13 +1,13 @@
 $color-high-high: #f44336;
-$color-high-normal: #FF9800;
-$color-high-law: #FF9800;
-$color-normal-high: #FF9800;
+$color-high-normal: #FFCC80;
+$color-high-law: #FFCC80;
+$color-normal-high: #FFCC80;
 $color-normal-normal: #FFC107;
-$color-normal-law: #FFEB3B;
-$color-law-high: #FF9800;
-$color-law-normal: #FFEB3B;
-$color-law-law: #4CAF50;
-$color-overdue:#795548;
+$color-normal-law: #FFF59D;
+$color-law-high: #FFCC80;
+$color-law-normal: #80CBC4;
+$color-law-law: #A5D6A7;
+$color-overdue:#BCAAA4;
 
 .priorityHigh{
     background-color: $color-high-high;
@@ -55,13 +55,22 @@ $color-overdue:#795548;
 }
 
 .font-large{
+    font-size: 45px;
+}
+
+.font-medium{
     font-size: 30px;
 }
 
 .mat-list-item{
     margin: 1px;
+    color: white;
 }
 
 .marg-right{
     margin-right: 20px;
+}
+
+.less-margin{
+    margin: -20px;
 }

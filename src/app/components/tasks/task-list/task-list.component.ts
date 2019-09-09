@@ -16,7 +16,7 @@ export class TaskListComponent implements OnInit {
   constructor(public authService: AuthService,private service: TaskService, private dialog: MatDialog, private notificationService: NotificationService) { }
 
   listData: MatTableDataSource<Task>;
-  displayedColumns: string[] = ["title","description","project","deadlineDate","deadlineTime","priority","isDone","actions"];
+  displayedColumns: string[] = ["title","description","project","deadlineDate","deadlineTime","priority","addedTime","isDone","actions"];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -34,11 +34,6 @@ export class TaskListComponent implements OnInit {
         this.listData = new MatTableDataSource(array);
         this.listData.sort = this.sort;
         this.listData.paginator = this.paginator;
-        // this.listData.filterPredicate = (data, filter) => {
-        //   return this.displayedColumns.some(ele => {
-        //     return ele != 'actions' && data[ele].toLowerCase().indexOf(filter) != -1;
-        //   });
-        // };
       }
     );
   }
@@ -88,6 +83,7 @@ export class Task {
   deadlineTime: string;
   category: string;
   priority: string;
+  addedTime: string;
   isDone: boolean;
 
 }
