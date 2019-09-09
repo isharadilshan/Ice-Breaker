@@ -14,11 +14,11 @@
   <mat-table [dataSource]="listData" matSort>
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.title}}</mat-cell>
+      <mat-cell *matCellDef="let element">{{element.title | slice:0:30}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="description">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.description}}</mat-cell>
+      <mat-cell *matCellDef="let element">{{element.description | slice:0:30}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="project">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Assigned Project</mat-header-cell>
@@ -35,6 +35,10 @@
     <ng-container matColumnDef="priority">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Priority</mat-header-cell>
       <mat-cell *matCellDef="let element">{{element.priority}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="addedTime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Added Time</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.addedTime | date: 'short'}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="isDone">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Is Done</mat-header-cell>

@@ -5,7 +5,6 @@ import { tap } from 'rxjs/operators';
 import { Task } from 'src/app/models/task';
 import { TaskService } from 'src/app/shared/task.service';
 
-
 @Component({
   selector: 'app-pending-tasks',
   templateUrl: './pending-tasks.component.html',
@@ -28,7 +27,7 @@ import { TaskService } from 'src/app/shared/task.service';
     ]),
     trigger('list', [
       transition(':enter', [
-      query('@items', stagger(300, animateChild()))
+      query('@items', stagger(300, animateChild()),{ optional: true })
       ]),
     ])
   ]
