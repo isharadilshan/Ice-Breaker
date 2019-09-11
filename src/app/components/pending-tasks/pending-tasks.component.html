@@ -5,7 +5,7 @@
     [class.priorityLawH]="task.priority==='law' && task.deadline==='red'" [class.priorityLawM]="task.priority==='law' && task.deadline==='yellow'" [class.priorityLaw]="task.priority==='law' && task.deadline==='green'" [class.overdue]="task.priority==='overdue' && task.deadline==='overdue'">
       <mat-list>
         <mat-list-item><span class="font-medium"><b>{{ (task.title | slice:0:100 ) + (task.title.length > 100 ? '...' : '') }}</b></span></mat-list-item>
-        <mat-list-item><h4 class="black-font"><b>{{ task.project | slice:0:10 }}</b>&nbsp;&nbsp;</h4><h4>{{ (task.description | slice:0:100 ) + (task.title.length > 100 ? '...' : '') }}</h4></mat-list-item>
+        <mat-list-item><h4 class="color-proj"><b>{{ task.project | slice:0:10 }}&nbsp;&nbsp;|</b>&nbsp;&nbsp;</h4><h4>{{ (task.description | slice:0:100 ) + (task.title.length > 100 ? '...' : '') }}</h4></mat-list-item>
         <!-- <h4>USERNAME&nbsp;&nbsp;</h4> -->
       </mat-list>
       <span class="fill-remaining-space"></span>
