@@ -57,7 +57,6 @@ export class TaskListComponent implements OnInit {
   }
 
   onEdit(row){
-    console.log('CLICKED: onEdit()');
     this.service.populateForm(row);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

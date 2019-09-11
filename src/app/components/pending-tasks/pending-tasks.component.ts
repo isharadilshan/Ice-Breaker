@@ -55,7 +55,7 @@ export class PendingTasksComponent implements OnInit {
 
     let item;
 
-    timer(0, 3000)
+    timer(0, 5000)
     .pipe(
       tap(v => {
 
@@ -64,7 +64,7 @@ export class PendingTasksComponent implements OnInit {
       })
     ).subscribe();
 
-    timer(0, 3000)
+    timer(0, 5000)
     .pipe(
       tap(v => {
         

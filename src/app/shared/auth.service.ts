@@ -3,7 +3,6 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { User } from '../shared/user';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import * as firebase from 'firebase';
 
 @Injectable({
@@ -12,7 +11,6 @@ import * as firebase from 'firebase';
 export class AuthService {
 
   userData: any; // Save logged in user data
-  roleList: AngularFireList<any>;
 
   constructor(public afs: AngularFirestore, public afAuth: AngularFireAuth, public router: Router, public ngZone: NgZone) { 
 
@@ -37,8 +35,8 @@ export class AuthService {
       .then((result) => {
         this.ngZone.run(() => {
 
-          console.log(result.user.uid);
           this.router.navigate(['admin-panel']);
+          
         });
         this.SetUserData(result.user);
       }).catch((error) => {
@@ -55,10 +53,6 @@ export class AuthService {
         this.SendVerificationMail();
         this.SetUserData(result.user);
 
-        var usersRef = firebase.database().ref("roles");
-          usersRef.child(result.user.uid).set({ 
-            role: 'reader'
-          });
 
       }).catch((error) => {
         window.alert(error.message)
@@ -73,7 +67,7 @@ export class AuthService {
     })
   }
 
-  // Reset Forggot password
+  // Reset Forgot password
   ForgotPassword(passwordResetEmail) {
     return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail)
     .then(() => {
@@ -88,34 +82,6 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user'));
     return (user !== null && user.emailVerified !== false) ? true : false;
   }
-
-  // Returns true when user is admin
-  isAdmin(uid) {
-
-    // let admin = 
-    // if(uid){
-
-    // }
-  }
-
-
-  // Sign in with Google
-  // GoogleAuth() {
-  //   return this.AuthLogin(new auth.GoogleAuthProvider());
-  // }
-
-  // Auth logic to run auth providers
-  // AuthLogin(provider) {
-  //   return this.afAuth.auth.signInWithPopup(provider)
-  //   .then((result) => {
-  //      this.ngZone.run(() => {
-  //         this.router.navigate(['admin-panel']);
-  //       })
-  //     this.SetUserData(result.user);
-  //   }).catch((error) => {
-  //     window.alert(error)
-  //   })
-  // }
 
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
@@ -133,6 +99,22 @@ export class AuthService {
       merge: true
     })
   }
+
+  // SetRoleData(id,email,name){
+  //   var usersRef = firebase.database().ref("roles");
+  //       usersRef.child(id).set({ 
+  //         email: email,
+  //         role: 1,
+  //         userName: name
+  //       });
+  // }
+
+  // getRoleData(id){
+  //   var role;
+  //   firebase.database().ref('/roles/' + id).once('value').then(function(snapshot) {
+  //     return role = snapshot.val() || null;
+  //   });
+  // }
 
   // Sign out 
   SignOut() {
