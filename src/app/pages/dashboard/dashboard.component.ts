@@ -37,8 +37,8 @@ export class DashboardComponent implements OnInit {
     loop: true,
     margin: 15,
     autoplay: true,
-    autoplayTimeout: 5000,
-    autoplaySpeed: 5000,
+    autoplayTimeout: 3000,
+    // autoplaySpeed: 3000,
     responsive: {
         0: {
             items: 1
