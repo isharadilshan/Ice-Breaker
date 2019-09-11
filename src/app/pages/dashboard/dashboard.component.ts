@@ -77,8 +77,6 @@ export class DashboardComponent implements OnInit {
       return element;
     });
 
-    console.log(this.ptasks);
-
   }
 
 }
