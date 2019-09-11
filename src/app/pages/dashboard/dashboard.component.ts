@@ -27,7 +27,6 @@ export class DashboardComponent implements OnInit {
           };
         });
         this.summaryPriority(this.tasks);
-        // console.log(this.tasks);
       }
     );//observable to get data on init
 
@@ -38,8 +37,8 @@ export class DashboardComponent implements OnInit {
     loop: true,
     margin: 15,
     autoplay: true,
-    autoplayTimeout: 3000,
-    autoplaySpeed: 2000,
+    autoplayTimeout: 5000,
+    autoplaySpeed: 5000,
     responsive: {
         0: {
             items: 1
@@ -64,7 +63,6 @@ export class DashboardComponent implements OnInit {
     this.ptasks = tasks.map(element => {
       let ets = element.deadlineTimeStamp - Date.now();
       let day2 = 172800000;
-      let day1 = 86400000;
       let day4 = 345600000;
       if (ets < 0){ 
         element.deadline = 'overdue';

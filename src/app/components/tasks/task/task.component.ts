@@ -32,6 +32,7 @@ export class TaskComponent implements OnInit {
         });
       }
     );//observable to get data on init
+    console.log(this.projects);
   }
 
   onClear(){
