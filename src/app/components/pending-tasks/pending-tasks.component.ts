@@ -55,7 +55,7 @@ export class PendingTasksComponent implements OnInit {
 
     let item;
 
-    timer(0, 5000)
+    timer(0, 5000)//observable stream 
     .pipe(
       tap(v => {
 
