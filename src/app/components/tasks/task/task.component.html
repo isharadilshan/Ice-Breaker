@@ -23,7 +23,7 @@
           <mat-select formControlName="project" placeholder="Project">
             <mat-option>None</mat-option>
             <ng-container *ngFor="let project of projects">
-              <mat-option value="{{project.code}}">{{project.title}}</mat-option>
+              <mat-option value="{{project.title}}">{{project.title}}</mat-option>
             </ng-container>
             
           </mat-select>
