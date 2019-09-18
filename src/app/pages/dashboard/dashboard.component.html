@@ -1,9 +1,7 @@
  <div class="black-back">
   <owl-carousel-o [options]="customOptions">
-    <ng-template carouselSlide *ngFor="let task of ptasks">
-      <mat-card class="example-card mat-elevation-z4" [class.priorityHigh]="task.priority==='high' && task.deadline==='red'" [class.priorityHighM]="task.priority==='high' && task.deadline==='yellow'" [class.priorityHighL]="task.priority==='high' && task.deadline==='green'"
-       [class.priorityNormalH]="task.priority==='medium' && task.deadline==='red'" [class.priorityNormalM]="task.priority==='medium' && task.deadline==='yellow'" [class.priorityNormal]="task.priority==='medium' && task.deadline==='green'"
-       [class.priorityLawH]="task.priority==='law' && task.deadline==='red'" [class.priorityLawM]="task.priority==='law' && task.deadline==='yellow'" [class.priorityLaw]="task.priority==='law' && task.deadline==='green'" [class.overdue]="task.priority==='overdue' && task.deadline==='overdue'">
+    <ng-template carouselSlide *ngFor="let task of tasks">
+      <mat-card class="example-card mat-elevation-z4 scard-back">
         <mat-card-header>
           <mat-card-title><h2>{{task.title}}</h2></mat-card-title>
           <mat-card-subtitle><h2>{{task.description}}</h2></mat-card-subtitle>

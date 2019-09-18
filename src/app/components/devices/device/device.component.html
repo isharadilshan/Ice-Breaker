@@ -1,0 +1,24 @@
+<mat-toolbar>
+    <span>{{service.form.controls['$key'].value?"Modify Device":"Add Device"}}</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar>
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <div class="controles-container">
+      <input type="hidden" formControlName="$key">
+      <mat-form-field>
+        <input formControlName="title" matInput placeholder="Title*">
+        <mat-error>This field is mandatory</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="code" matInput placeholder="Code*">
+        <mat-error>This field is mandatory</mat-error>
+      </mat-form-field>
+      <div class="bottom-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+        <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+      </div>
+    </div>
+  </mat-grid-list>  
+</form>

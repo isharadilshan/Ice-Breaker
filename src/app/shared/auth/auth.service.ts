@@ -2,8 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
-import { User } from '../shared/user';
-import * as firebase from 'firebase';
+import { User } from '../../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +29,7 @@ export class AuthService {
   }
 
   //Sign in with email/password
-  SignIn(email, password) {
+  signIn(email, password) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
@@ -38,20 +37,20 @@ export class AuthService {
           this.router.navigate(['admin-panel']);
           
         });
-        this.SetUserData(result.user);
+        this.setUserData(result.user);
       }).catch((error) => {
         window.alert(error.message)
       })
   }
 
   // Sign up with email/password
-  SignUp(email, password) {
+  signUp(email, password) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
-        this.SendVerificationMail();
-        this.SetUserData(result.user);
+        this.sendVerificationMail();
+        this.setUserData(result.user);
 
 
       }).catch((error) => {
@@ -60,7 +59,7 @@ export class AuthService {
   }
 
   // Send email verfificaiton when new user sign up
-  SendVerificationMail() {
+  sendVerificationMail() {
     return this.afAuth.auth.currentUser.sendEmailVerification()
     .then(() => {
       this.router.navigate(['verify-email']);
@@ -68,7 +67,7 @@ export class AuthService {
   }
 
   // Reset Forgot password
-  ForgotPassword(passwordResetEmail) {
+  forgotPassword(passwordResetEmail) {
     return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail)
     .then(() => {
       window.alert('Password reset email sent, check your inbox.');
@@ -86,7 +85,7 @@ export class AuthService {
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  SetUserData(user) {
+  setUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
       uid: user.uid,
@@ -100,28 +99,14 @@ export class AuthService {
     })
   }
 
-  // SetRoleData(id,email,name){
-  //   var usersRef = firebase.database().ref("roles");
-  //       usersRef.child(id).set({ 
-  //         email: email,
-  //         role: 1,
-  //         userName: name
-  //       });
-  // }
-
-  // getRoleData(id){
-  //   var role;
-  //   firebase.database().ref('/roles/' + id).once('value').then(function(snapshot) {
-  //     return role = snapshot.val() || null;
-  //   });
-  // }
-
   // Sign out 
-  SignOut() {
+  signOut() {
     return this.afAuth.auth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['sign-in']);
-    })
+    }).catch(() => {
+      console.log('Cannot remove user from local storage');
+    });
   }
 
 }

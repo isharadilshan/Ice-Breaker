@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ProjectService } from 'src/app/shared/project.service';
+import { ProjectService } from 'src/app/shared/utils/project.service';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialogConfig } from '@angular/material';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { ProjectComponent } from '../project/project.component';
-import { NotificationService } from 'src/app/shared/notification.service';
-import { AuthService } from 'src/app/shared/auth.service';
+import { NotificationService } from 'src/app/shared/notification/notification.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 @Component({
   selector: 'app-project-list',
@@ -42,6 +42,14 @@ export class ProjectListComponent implements OnInit {
         };
 
       });
+  }
+
+  signOut(){
+    try{
+      this.authService.signOut();
+    }catch(err){
+      console.log("Error when trying to sign out ///"+err);
+    }
   }
 
   onSearchClear(){

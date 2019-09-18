@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectService } from '../../../shared/utils/project.service';
-import { MatDialogRef } from '@angular/material';
+import { DeviceService } from 'src/app/shared/utils/device.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
+import { ProjectComponent } from '../../projects/project/project.component';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
-  selector: 'app-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.scss']
+  selector: 'app-device',
+  templateUrl: './device.component.html',
+  styleUrls: ['./device.component.scss']
 })
-export class ProjectComponent implements OnInit {
+export class DeviceComponent implements OnInit {
 
-  constructor(public service: ProjectService, private notificationService: NotificationService, public dialogRef: MatDialogRef<ProjectComponent>) { }
+  constructor(public service: DeviceService, private notificationService: NotificationService, public dialogRef: MatDialogRef<ProjectComponent>) { }
 
   ngOnInit() {
-    this.service.getProjects();
-  } 
-  
+    this.service.getDevices();
+  }
+
   onClear(){
     this.service.form.reset();
     this.service.initializeFormGroup();
@@ -24,9 +25,9 @@ export class ProjectComponent implements OnInit {
   onSubmit(){
     if(this.service.form.valid){
       if(!this.service.form.get('$key').value){
-        this.service.insertProject(this.service.form.value);
+        this.service.insertDevice(this.service.form.value);
       }else{
-        this.service.updateProject(this.service.form.value);
+        this.service.updateDevice(this.service.form.value);
       }
       this.service.form.reset();
       this.service.initializeFormGroup();

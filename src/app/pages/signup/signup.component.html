@@ -5,7 +5,7 @@
       <h3>Sign Up</h3>
 
       <div class="formGroup">
-        <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
+        <input type="email" class="formControl" placeholder="Email" #email required>
       </div>
 
       <!-- <div class="formGroup">
@@ -13,11 +13,11 @@
       </div> -->
 
       <div class="formGroup">
-        <input type="password" class="formControl" placeholder="Password" #userPwd required>
+        <input type="password" class="formControl" placeholder="Password" #password required>
       </div>
 
       <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
+        <input type="button" class="btn btnPrimary" value="Sign Up" (click)="signUp(email.value, password.value)">
       </div>
       
     </div>
