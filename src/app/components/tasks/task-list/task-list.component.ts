@@ -22,15 +22,6 @@ export class TaskListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   searchKey: string;
 
-  //SOLID Principle 
-  signOut(){
-    try{
-      this.authService.signOut();
-    }catch(err){
-      console.log("Error occurs when trying to sign out ///"+err);
-    }
-  }
-
   ngOnInit() {
     this.service.getTasks().subscribe(
       list => {
@@ -78,6 +69,15 @@ export class TaskListComponent implements OnInit {
     if(confirm('Are you sure to delete this record ?')){
       this.service.deleteTask($key);
       this.notificationService.warn('Deleted Successfully');
+    }
+  }
+
+  //SOLID Principle 
+  signOut(){
+    try{
+      this.authService.signOut();
+    }catch(err){
+      console.log("Error occurs when trying to sign out ///"+err);
     }
   }
 

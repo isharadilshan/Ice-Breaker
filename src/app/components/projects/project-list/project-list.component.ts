@@ -41,7 +41,7 @@ export class ProjectListComponent implements OnInit {
           })  
         };
 
-      });
+    });
   }
 
   signOut(){

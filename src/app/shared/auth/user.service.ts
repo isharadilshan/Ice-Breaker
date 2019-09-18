@@ -10,43 +10,43 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class UserService {
 
-  uid = this.afAuth.authState.pipe(
-    map(authState => {
-      if(!authState){
-        return null;
-      }else{
-        return authState.uid;
-      }
-    })
-  );
+  // uid = this.afAuth.authState.pipe(
+  //   map(authState => {
+  //     if(!authState){
+  //       return null;
+  //     }else{
+  //       return authState.uid;
+  //     }
+  //   })
+  // );
    
-  isAdmin: Observable<boolean>= this.uid.pipe(
-    switchMap(uid => {
-      if(!uid){
-        return observableOf(false);
-      }else{
-        return this.db.object<boolean>('/admin/' + uid).valueChanges();
-      }
-    })
-  )
+  // isAdmin: Observable<boolean>= this.uid.pipe(
+  //   switchMap(uid => {
+  //     if(!uid){
+  //       return observableOf(false);
+  //     }else{
+  //       return this.db.object<boolean>('/admin/' + uid).valueChanges();
+  //     }
+  //   })
+  // )
 
-  isSuperAdmin: Observable<boolean>= this.uid.pipe(
-    switchMap(uid => {
-      if(!uid){
-        return observableOf(false);
-      }else{
-        return this.db.object<boolean>('/superadmin/' + uid).valueChanges();
-      }
-    })
-  )
+  // isSuperAdmin: Observable<boolean>= this.uid.pipe(
+  //   switchMap(uid => {
+  //     if(!uid){
+  //       return observableOf(false);
+  //     }else{
+  //       return this.db.object<boolean>('/superadmin/' + uid).valueChanges();
+  //     }
+  //   })
+  // )
 
-  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) { }
+  // constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) { }
 
-  login(){
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
-  }
+  // login(){
+  //   this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  // }
 
-  logout(){
-    this.afAuth.auth.signOut();
-  }
+  // logout(){
+  //   this.afAuth.auth.signOut();
+  // }
 }

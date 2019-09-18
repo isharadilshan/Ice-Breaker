@@ -33,6 +33,7 @@ import { DevicesComponent } from './components/devices/devices.component';
 import { DeviceComponent } from './components/devices/device/device.component';
 import { DeviceListComponent } from './components/devices/device-list/device-list.component';
 import { DeviceService } from './shared/utils/device.service';
+import { PTasksComponent } from './components/p-tasks/p-tasks.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { DeviceService } from './shared/utils/device.service';
     VerifyEmailComponent,
     DevicesComponent,
     DeviceComponent,
-    DeviceListComponent
+    DeviceListComponent,
+    PTasksComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,6 @@ import { DeviceService } from './shared/utils/device.service';
   ],
   providers: [ TaskService, ProjectService, DeviceService, DatePipe, AuthService, AngularFirestore ],
   bootstrap: [ AppComponent ],
-  entryComponents: [ TaskComponent, ProjectComponent ]
+  entryComponents: [ TaskComponent, ProjectComponent, DeviceComponent ]
 })
 export class AppModule { }
