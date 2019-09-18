@@ -15,22 +15,24 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AdminpanelComponent } from './pages/adminpanel/adminpanel.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { TaskComponent } from './components/tasks/task/task.component';
-import { TaskService } from './shared/task.service';
-import { ProjectService } from './shared/project.service';
+import { TaskService } from './shared/utils/task.service';
+import { ProjectService } from './shared//utils/project.service';
 import { environment } from '../environments/environment';
 import { TaskListComponent } from './components/tasks/task-list/task-list.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ProjectComponent } from './components/projects/project/project.component';
 import { ProjectListComponent } from './components/projects/project-list/project-list.component';
 import { PendingTasksComponent } from './components/pending-tasks/pending-tasks.component';
-import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
-import { AuthService } from './shared/auth.service';
+import { AuthService } from './shared/auth/auth.service';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { LogoutComponent } from './components/logout/logout.component';
+import { DevicesComponent } from './components/devices/devices.component';
+import { DeviceComponent } from './components/devices/device/device.component';
+import { DeviceListComponent } from './components/devices/device-list/device-list.component';
+import { DeviceService } from './shared/utils/device.service';
 
 @NgModule({
   declarations: [
@@ -44,12 +46,13 @@ import { LogoutComponent } from './components/logout/logout.component';
     ProjectComponent,
     ProjectListComponent,
     PendingTasksComponent,
-    LoginComponent,
     SignupComponent,
     SigninComponent,
     ForgetPasswordComponent,
     VerifyEmailComponent,
-    LogoutComponent
+    DevicesComponent,
+    DeviceComponent,
+    DeviceListComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [ TaskService, ProjectService, DatePipe, AuthService, AngularFirestore ],
+  providers: [ TaskService, ProjectService, DeviceService, DatePipe, AuthService, AngularFirestore ],
   bootstrap: [ AppComponent ],
   entryComponents: [ TaskComponent, ProjectComponent ]
 })

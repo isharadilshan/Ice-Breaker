@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TaskService } from 'src/app/shared/task.service';
+import { TaskService } from 'src/app/shared/utils/task.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TaskComponent } from '../task/task.component';
-import { NotificationService } from 'src/app/shared/notification.service';
-import { AuthService } from 'src/app/shared/auth.service';
+import { NotificationService } from 'src/app/shared/notification/notification.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 @Component({
   selector: 'app-task-list',
@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/shared/auth.service';
 })
 export class TaskListComponent implements OnInit {
 
-  constructor(public authService: AuthService,private service: TaskService, private dialog: MatDialog, private notificationService: NotificationService) { }
+  constructor(public authService: AuthService, private service: TaskService, private dialog: MatDialog, private notificationService: NotificationService) { }
 
   listData: MatTableDataSource<Task>;
   displayedColumns: string[] = ["title","description","project","deadlineDate","deadlineTime","priority","addedTime","isDone","actions"];
@@ -21,6 +21,15 @@ export class TaskListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   searchKey: string;
+
+  //SOLID Principle 
+  signOut(){
+    try{
+      this.authService.signOut();
+    }catch(err){
+      console.log("Error occurs when trying to sign out ///"+err);
+    }
+  }
 
   ngOnInit() {
     this.service.getTasks().subscribe(

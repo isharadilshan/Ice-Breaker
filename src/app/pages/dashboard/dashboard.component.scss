@@ -1,14 +1,8 @@
-$color-high-high: #f44336;
-$color-high-normal: #FF9800;
-$color-high-law: #FF9800;
-$color-normal-high: #FF9800;
-$color-normal-normal: #FFC107;
-$color-normal-law: #FFEB3B;
-$color-law-high: #FF9800;
-$color-law-normal: #FFEB3B;
-$color-law-law: #4CAF50;
-$color-overdue:#795548;
 $back-color: #3F51B5;
+
+.scard-back{
+    background-color: $back-color;
+}
 
 .example-card {
     max-width: 400px;
@@ -21,69 +15,6 @@ h2{
 
 h3{
     color: black;
-}
-
-.mat-toolbar{
-    margin-top: 15px;
-    margin-left: 10px;
-    margin-right: -40px;
-}
-
-.right-corner{
-    background-color: red;
-}
-
-.toolbar-back{
-    background-color: bisque;
-}
-
-.priorityHigh{
-    color: $color-high-high;
-}
-
-.priorityHighM{
-    background-color: $back-color;
-    color: $color-high-normal;
-}
-
-.priorityHighL{
-    background-color: $back-color;
-    color: $color-high-law;
-}
-
-.priorityNormalH{
-    background-color: $back-color;
-    color: $color-normal-high;
-}
-
-.priorityNormalM{
-    background-color: $back-color;
-    color: $color-normal-normal;
-}
-
-.priorityNormal{
-    background-color: $back-color;
-    color: $color-normal-law;
-}
-
-.priorityLawH{
-    background-color: $back-color;
-    color: $color-law-high;
-}
-
-.priorityLawM{
-    background-color: $back-color;
-    color: $color-law-normal;
-}
-
-.priorityLaw{
-    background-color: $back-color;
-    color: $color-law-law;
-}
-
-.overdue{
-    background-color: $back-color;
-    color: $color-overdue;
 }
 
 .margn{

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import * as _ from 'lodash';
 
-import { TaskService } from '../../../shared/task.service';
-import { ProjectService } from '../../../shared/project.service';
-import { NotificationService } from '../../../shared/notification.service';
+import { TaskService } from '../../../shared/utils/task.service';
+import { ProjectService } from '../../../shared/utils/project.service';
+import { NotificationService } from '../../../shared/notification/notification.service';
 import { FormGroup } from '@angular/forms';
 
 @Component({

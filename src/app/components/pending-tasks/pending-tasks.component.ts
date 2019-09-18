@@ -3,7 +3,8 @@ import { trigger, transition, style, animate, query, stagger, animateChild } fro
 import { timer } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Task } from 'src/app/models/task';
-import { TaskService } from 'src/app/shared/task.service';
+import { TaskService } from 'src/app/shared/utils/task.service';
+import { TaskFilterService } from 'src/app/shared/utils/task-filter.service';
 
 @Component({
   selector: 'app-pending-tasks',
@@ -32,12 +33,13 @@ import { TaskService } from 'src/app/shared/task.service';
     ])
   ]
 })
+
 export class PendingTasksComponent implements OnInit {
 
   pendingTasks: Task[];
-  priorityPendings: Task[]=[];
+  prioritizedTasks: Task[]=[];
 
-  constructor(private service: TaskService) {}
+  constructor(private service: TaskService, private priorityService: TaskFilterService) {}
 
   ngOnInit() {
 
@@ -49,7 +51,7 @@ export class PendingTasksComponent implements OnInit {
             ...item.payload.val()//destructuring
           };
         });
-        this.pendingPriority(this.pendingTasks);
+        this.prioritizedTasks = this.priorityService.setDeadlinePriority(this.pendingTasks);
       }
     );//observable to get data on init
 
@@ -59,7 +61,7 @@ export class PendingTasksComponent implements OnInit {
     .pipe(
       tap(v => {
 
-        item = this.priorityPendings.shift();
+        item = this.prioritizedTasks.shift();
         
       })
     ).subscribe();
@@ -68,34 +70,35 @@ export class PendingTasksComponent implements OnInit {
     .pipe(
       tap(v => {
         
-        this.priorityPendings.push(item);
+        this.prioritizedTasks.push(item);
+
+        //increment i from 5. and pass that sub array to the front end
         
       })
     ).subscribe();
 
   }
 
-  pendingPriority(pendingTasks){
-
-    this.priorityPendings = pendingTasks.map(element => {
-      let ets = element.deadlineTimeStamp - Date.now();
-      let day2 = 172800000;
-      let day1 = 86400000;
-      let day4 = 345600000;
-
-      if (ets < 0){ 
-        element.deadline = 'overdue';
-        element.priority = 'overdue';
-      }else if(ets > 0 && ets < day2){
-        element.deadline = 'red';
-      }else if(ets > day2 && ets < day4){
-        element.deadline = 'yellow';
-      }else{
-        element.deadline = 'green';
-      }
-      return element;
-    });
-
+  priorityStyle(task){
+    let styles;
+    if(task.priority == 'overdue'){
+      styles = {
+        'background-color': '#A1887F'
+      };
+    }else if(task.priority == 'red'){
+      styles = {
+        'background-color': '#f44336'
+      };
+    }else if(task.priority == 'yellow'){
+      styles = {
+        'background-color': '#FFF176'
+      };
+    }else{
+      styles = {
+        'background-color': '#81C784'
+      };
+    }
+    return styles;
   }
 
 }
