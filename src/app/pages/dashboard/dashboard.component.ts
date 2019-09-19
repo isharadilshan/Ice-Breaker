@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
     loop: true,
     margin: 15,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     responsive: {//set no of mat cards per screen according to screen size
         0: {
             items: 1

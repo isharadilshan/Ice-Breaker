@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { TaskService } from 'src/app/shared/utils/task.service';
 import { Task } from 'src/app/models/task';
-import { timer } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { TaskFilterService } from 'src/app/shared/utils/task-filter.service';
+import { ArraySplitterService } from '../../shared/utils/array-splitter.service';
 
 @Component({
   selector: 'app-p-tasks',
@@ -13,10 +12,11 @@ import { TaskFilterService } from 'src/app/shared/utils/task-filter.service';
 })
 export class PTasksComponent implements OnInit {
 
+  p1Tasks; p2Tasks; p3Tasks; p4Tasks; p5Tasks; prioritizedChunks;
   pendingTasks: Task[];
   prioritizedTasks: Task[]=[];
 
-  constructor(private service: TaskService, private priorityService: TaskFilterService) { }
+  constructor(private service: TaskService, private priorityService: TaskFilterService, public arraySplitter: ArraySplitterService) { }
 
   ngOnInit() {
     this.service.getPendingTasks().subscribe(
@@ -29,17 +29,13 @@ export class PTasksComponent implements OnInit {
         });
         
         this.prioritizedTasks = this.priorityService.setDeadlinePriority(this.pendingTasks);
+        this.prioritizedChunks = this.arraySplitter.chunkify(this.prioritizedTasks,5,true);
+        console.log(this.prioritizedChunks);
+        [ this.p1Tasks, this.p2Tasks, this.p3Tasks, this.p4Tasks, this.p5Tasks ] = this.prioritizedChunks;
+
       }
     );//observable to get data on init
 
-    timer(0, 5000)//observable stream 
-    .pipe(
-      tap(v => {
-
-        // item = this.prioritizedTasks.shift();
-        
-      })
-    ).subscribe();
   }
 
   customOptions: OwlOptions = {
@@ -47,7 +43,7 @@ export class PTasksComponent implements OnInit {
     loop: true,
     margin: 15,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     dots: false
   }
 

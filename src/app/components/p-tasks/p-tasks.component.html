@@ -1,5 +1,5 @@
 <owl-carousel-o [options]="customOptions">
-    <ng-template carouselSlide *ngFor="let task of prioritizedTasks">
+    <ng-template carouselSlide *ngFor="let task of p1Tasks">
         <mat-toolbar [ngStyle]="priorityStyle(task)"> 
             <mat-list>
               <mat-list-item><span class="font-medium"><b>{{ (task.title | slice:0:100 ) + (task.title.length > 100 ? '...' : '') }}</b></span></mat-list-item>
@@ -16,8 +16,8 @@
     </ng-template>  
 </owl-carousel-o>
 <owl-carousel-o [options]="customOptions">
-    <ng-template carouselSlide *ngFor="let task of prioritizedTasks">
-        <mat-toolbar > 
+    <ng-template carouselSlide *ngFor="let task of p2Tasks">
+        <mat-toolbar [ngStyle]="priorityStyle(task)"> 
             <mat-list>
               <mat-list-item><span class="font-medium"><b>{{ (task.title | slice:0:100 ) + (task.title.length > 100 ? '...' : '') }}</b></span></mat-list-item>
               <mat-list-item><h4 class="color-proj"><b>{{ task.project | slice:0:10 }}&nbsp;&nbsp;|</b>&nbsp;&nbsp;</h4><h4>{{ (task.description | slice:0:100 ) + (task.title.length > 100 ? '...' : '') }}</h4></mat-list-item>
@@ -33,8 +33,8 @@
     </ng-template>  
 </owl-carousel-o>
 <owl-carousel-o [options]="customOptions">
-    <ng-template carouselSlide *ngFor="let task of prioritizedTasks">
-        <mat-toolbar > 
+    <ng-template carouselSlide *ngFor="let task of p3Tasks">
+        <mat-toolbar [ngStyle]="priorityStyle(task)"> 
             <mat-list>
               <mat-list-item><span class="font-medium"><b>{{ (task.title | slice:0:100 ) + (task.title.length > 100 ? '...' : '') }}</b></span></mat-list-item>
               <mat-list-item><h4 class="color-proj"><b>{{ task.project | slice:0:10 }}&nbsp;&nbsp;|</b>&nbsp;&nbsp;</h4><h4>{{ (task.description | slice:0:100 ) + (task.title.length > 100 ? '...' : '') }}</h4></mat-list-item>
@@ -50,8 +50,8 @@
     </ng-template>  
 </owl-carousel-o>
 <owl-carousel-o [options]="customOptions">
-    <ng-template carouselSlide *ngFor="let task of prioritizedTasks">
-        <mat-toolbar > 
+    <ng-template carouselSlide *ngFor="let task of p4Tasks">
+        <mat-toolbar [ngStyle]="priorityStyle(task)"> 
             <mat-list>
               <mat-list-item><span class="font-medium"><b>{{ (task.title | slice:0:100 ) + (task.title.length > 100 ? '...' : '') }}</b></span></mat-list-item>
               <mat-list-item><h4 class="color-proj"><b>{{ task.project | slice:0:10 }}&nbsp;&nbsp;|</b>&nbsp;&nbsp;</h4><h4>{{ (task.description | slice:0:100 ) + (task.title.length > 100 ? '...' : '') }}</h4></mat-list-item>
@@ -67,8 +67,8 @@
     </ng-template>  
 </owl-carousel-o>
 <owl-carousel-o [options]="customOptions">
-    <ng-template carouselSlide *ngFor="let task of prioritizedTasks">
-        <mat-toolbar > 
+    <ng-template carouselSlide *ngFor="let task of p5Tasks">
+        <mat-toolbar [ngStyle]="priorityStyle(task)" class="centered-content"> 
             <mat-list>
               <mat-list-item><span class="font-medium"><b>{{ (task.title | slice:0:100 ) + (task.title.length > 100 ? '...' : '') }}</b></span></mat-list-item>
               <mat-list-item><h4 class="color-proj"><b>{{ task.project | slice:0:10 }}&nbsp;&nbsp;|</b>&nbsp;&nbsp;</h4><h4>{{ (task.description | slice:0:100 ) + (task.title.length > 100 ? '...' : '') }}</h4></mat-list-item>
