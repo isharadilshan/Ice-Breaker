@@ -34,6 +34,7 @@ import { DeviceComponent } from './components/devices/device/device.component';
 import { DeviceListComponent } from './components/devices/device-list/device-list.component';
 import { DeviceService } from './shared/utils/device.service';
 import { PTasksComponent } from './components/p-tasks/p-tasks.component';
+import { PndngTasksComponent } from './components/pndng-tasks/pndng-tasks.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { PTasksComponent } from './components/p-tasks/p-tasks.component';
     DevicesComponent,
     DeviceComponent,
     DeviceListComponent,
-    PTasksComponent
+    PTasksComponent,
+    PndngTasksComponent
   ],
   imports: [
     BrowserModule,

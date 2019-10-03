@@ -55,27 +55,30 @@ export class PendingTasksComponent implements OnInit {
       }
     );//observable to get data on init
 
-    let item;
+    if(this.prioritizedTasks.length>7){
 
-    timer(0, 5000)//observable stream 
-    .pipe(
-      tap(v => {
+      let item;
 
-        item = this.prioritizedTasks.shift();
-        
-      })
-    ).subscribe();
+      timer(0, 5000)//observable stream 
+      .pipe(
+        tap(v => {
 
-    timer(0, 5000)
-    .pipe(
-      tap(v => {
-        
-        this.prioritizedTasks.push(item);
+          item = this.prioritizedTasks.shift();
+          
+        })
+      ).subscribe();
 
-        //increment i from 5. and pass that sub array to the front end
-        
-      })
-    ).subscribe();
+      timer(0, 5000)
+      .pipe(
+        tap(v => {
+          
+          this.prioritizedTasks.push(item);
+
+          //increment i from 5. and pass that sub array to the front end
+          
+        })
+      ).subscribe();
+    }
 
   }
 
@@ -91,7 +94,7 @@ export class PendingTasksComponent implements OnInit {
       };
     }else if(task.priority == 'yellow'){
       styles = {
-        'background-color': '#FFF176'
+        'background-color': '#FBC02D'
       };
     }else{
       styles = {

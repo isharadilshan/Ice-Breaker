@@ -12,7 +12,7 @@ import { ArraySplitterService } from '../../shared/utils/array-splitter.service'
 })
 export class PTasksComponent implements OnInit {
 
-  p1Tasks; p2Tasks; p3Tasks; p4Tasks; p5Tasks; prioritizedChunks;
+  p1Tasks; p2Tasks; p3Tasks; p4Tasks; p5Tasks; p6Tasks; prioritizedChunks;
   pendingTasks: Task[];
   prioritizedTasks: Task[]=[];
 
@@ -29,9 +29,9 @@ export class PTasksComponent implements OnInit {
         });
         
         this.prioritizedTasks = this.priorityService.setDeadlinePriority(this.pendingTasks);
-        this.prioritizedChunks = this.arraySplitter.chunkify(this.prioritizedTasks,5,true);
+        this.prioritizedChunks = this.arraySplitter.chunkify(this.prioritizedTasks,6,true);
         console.log(this.prioritizedChunks);
-        [ this.p1Tasks, this.p2Tasks, this.p3Tasks, this.p4Tasks, this.p5Tasks ] = this.prioritizedChunks;
+        [ this.p1Tasks, this.p2Tasks, this.p3Tasks, this.p4Tasks, this.p5Tasks, this.p6Tasks ] = this.prioritizedChunks;
 
       }
     );//observable to get data on init
@@ -59,7 +59,7 @@ export class PTasksComponent implements OnInit {
       };
     }else if(task.priority == 'yellow'){
       styles = {
-        'background-color': '#FFF176'
+        'background-color': '#FDD835'
       };
     }else{
       styles = {
