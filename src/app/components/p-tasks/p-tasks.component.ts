@@ -59,7 +59,7 @@ export class PTasksComponent implements OnInit {
       };
     }else if(task.priority == 'yellow'){
       styles = {
-        'background-color': '#FFF176'
+        'background-color': '#FDD835'
       };
     }else{
       styles = {
