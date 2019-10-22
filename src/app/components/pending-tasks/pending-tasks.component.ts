@@ -55,8 +55,6 @@ export class PendingTasksComponent implements OnInit {
       }
     );//observable to get data on init
 
-    if(this.prioritizedTasks.length>7){
-
       let item;
 
       timer(0, 5000)//observable stream 
@@ -78,7 +76,6 @@ export class PendingTasksComponent implements OnInit {
           
         })
       ).subscribe();
-    }
 
   }
 

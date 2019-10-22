@@ -35,6 +35,10 @@ import { DeviceListComponent } from './components/devices/device-list/device-lis
 import { DeviceService } from './shared/utils/device.service';
 import { PTasksComponent } from './components/p-tasks/p-tasks.component';
 import { PndngTasksComponent } from './components/pndng-tasks/pndng-tasks.component';
+import { ServersComponent } from './components/servers/servers.component';
+import { ServerComponent } from './components/servers/server/server.component';
+import { ServerListComponent } from './components/servers/server-list/server-list.component';
+import { ServerService } from './shared/utils/server.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,10 @@ import { PndngTasksComponent } from './components/pndng-tasks/pndng-tasks.compon
     DeviceComponent,
     DeviceListComponent,
     PTasksComponent,
-    PndngTasksComponent
+    PndngTasksComponent,
+    ServersComponent,
+    ServerComponent,
+    ServerListComponent
   ],
   imports: [
     BrowserModule,
@@ -70,8 +77,8 @@ import { PndngTasksComponent } from './components/pndng-tasks/pndng-tasks.compon
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [ TaskService, ProjectService, DeviceService, DatePipe, AuthService, AngularFirestore ],
+  providers: [ TaskService, ProjectService, DeviceService, ServerService, DatePipe, AuthService, AngularFirestore ],
   bootstrap: [ AppComponent ],
-  entryComponents: [ TaskComponent, ProjectComponent, DeviceComponent ]
+  entryComponents: [ TaskComponent, ProjectComponent, DeviceComponent, ServerComponent ]
 })
 export class AppModule { }
