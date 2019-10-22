@@ -1,8 +1,8 @@
 <mat-toolbar>
-    <span>{{service.form.controls['$key'].value?"Modify Device":"Add Device"}}</span>
-    <span class="fill-remaining-space"></span>
-    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><mat-icon>clear</mat-icon></button>
-  </mat-toolbar>
+  <span>{{service.form.controls['$key'].value?"Modify Device":"Add Device"}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
 <form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
   <mat-grid-list cols="2" rowHeight="300px">
     <div class="controles-container">

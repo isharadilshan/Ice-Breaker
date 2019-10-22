@@ -34,11 +34,13 @@ import { DeviceComponent } from './components/devices/device/device.component';
 import { DeviceListComponent } from './components/devices/device-list/device-list.component';
 import { DeviceService } from './shared/utils/device.service';
 import { PTasksComponent } from './components/p-tasks/p-tasks.component';
-import { PndngTasksComponent } from './components/pndng-tasks/pndng-tasks.component';
 import { ServersComponent } from './components/servers/servers.component';
 import { ServerComponent } from './components/servers/server/server.component';
 import { ServerListComponent } from './components/servers/server-list/server-list.component';
 import { ServerService } from './shared/utils/server.service';
+import { BuildsComponent } from './components/builds/builds.component';
+import { BuildComponent } from './components/builds/build/build.component';
+import { BuildListComponent } from './components/builds/build-list/build-list.component';
 
 @NgModule({
   declarations: [
@@ -60,10 +62,12 @@ import { ServerService } from './shared/utils/server.service';
     DeviceComponent,
     DeviceListComponent,
     PTasksComponent,
-    PndngTasksComponent,
     ServersComponent,
     ServerComponent,
-    ServerListComponent
+    ServerListComponent,
+    BuildsComponent,
+    BuildComponent,
+    BuildListComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +83,6 @@ import { ServerService } from './shared/utils/server.service';
   ],
   providers: [ TaskService, ProjectService, DeviceService, ServerService, DatePipe, AuthService, AngularFirestore ],
   bootstrap: [ AppComponent ],
-  entryComponents: [ TaskComponent, ProjectComponent, DeviceComponent, ServerComponent ]
+  entryComponents: [ TaskComponent, ProjectComponent, DeviceComponent, ServerComponent, BuildComponent ]
 })
 export class AppModule { }

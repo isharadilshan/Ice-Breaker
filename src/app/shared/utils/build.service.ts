@@ -1,0 +1,102 @@
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import * as _ from 'lodash';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class BuildService {
+
+  form: FormGroup = new FormGroup({
+    $key: new FormControl(null),
+    server: new FormControl('',Validators.required),
+    project: new FormControl('',Validators.required),
+    buildDate: new FormControl('',Validators.required),
+    buildTime: new FormControl('',Validators.required),
+    buildExpireDate: new FormControl('',Validators.required),
+    buildExpireTime: new FormControl('',Validators.required),
+    buildVersion: new FormControl('',Validators.required),
+    buildURL: new FormControl('',Validators.required)
+  });
+
+  constructor(private firebase: AngularFireDatabase, private datePipe: DatePipe) { }
+
+  buildList: AngularFireList<any>;
+
+  initializeFormGroup(){
+    this.form.setValue({
+      $key: null,
+      server: '',
+      project: '',
+      buildDate: '',
+      buildTime: '',
+      buildExpireDate: '',
+      buildExpireTime: '',
+      buildVersion: '',
+      buildURL: ''
+    });
+  }
+
+  getBuilds(){
+    this.buildList = this.firebase.list('builds');
+    return this.buildList.snapshotChanges(); //observable return from this function getTasks
+  }
+
+  // getSummaryTasks(){
+  //   this.buildList = this.firebase.list('builds', ref => ref.orderByChild('category').equalTo('summary'));
+  //   return this.buildList.snapshotChanges(); //observable return from this function getTasks
+  // }
+
+  // getPendingTasks(){
+  //   this.buildList = this.firebase.list('tasks', ref => ref.orderByChild('category').equalTo('pending'));
+  //   return this.buildList.snapshotChanges(); //observable return from this function getTasks 
+  // }
+
+  insertBuild(build){
+
+    this.buildList.push({
+      server: build.server,
+      project: build.project,
+      buildDate: build.buildDate,
+      buildTime: build.buildTime,
+      buildExpireDate: build.buildExpireDate,
+      buildExpireTime: build.buildExpireTime,
+      buildVersion: build.buildVersion,
+      buildURL: build.buildURL,
+
+      // deadlineDate: build.deadlineDate =="" ? "" : this.datePipe.transform(build.deadlineDate, 'yyyy-MM-dd'),
+      // deadlineTimeStamp: build.deadlineDate !== null ? Date.parse(build.deadlineDate) : null,
+      // deadlineTime: build.deadlineTime,
+      // addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
+
+    });
+  }
+
+  updateBuild(build){
+
+    this.buildList.update(build.$key,
+      {
+        server: build.server,
+        project: build.project,
+        buildDate: build.buildDate,
+        buildTime: build.buildTime,
+        buildExpireDate: build.buildExpireDate,
+        buildExpireTime: build.buildExpireTime,
+        buildVersion: build.buildVersion,
+        buildURL: build.buildURL,
+
+    });
+
+  }
+
+  deleteBuild($key: string){
+    this.buildList.remove($key);
+  }
+
+  populateForm(build){
+    // this.form.setValue(_.omit(build,'addedTime','deadlineTimeStamp'));
+    this.form.setValue(build);
+  }
+}

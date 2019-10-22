@@ -13,8 +13,8 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
-  form: FormGroup;
 
+  form: FormGroup;
   projects = [];
 
   constructor(public service: TaskService, private projectService: ProjectService, private notificationService: NotificationService, public dialogRef: MatDialogRef<TaskComponent>) { }
@@ -44,12 +44,13 @@ export class TaskComponent implements OnInit {
     if(this.service.form.valid){
       if(!this.service.form.get('$key').value){
         this.service.insertTask(this.service.form.value);
+        this.notificationService.success('Submitted Successfullly');
       }else{
         this.service.updateTask(this.service.form.value);
+        this.notificationService.success('Updated Successfullly');
       }
       this.service.form.reset();
       this.service.initializeFormGroup();
-      this.notificationService.success('Submitted Successfullly');
       this.onClose();
     }
   }

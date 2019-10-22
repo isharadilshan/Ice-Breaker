@@ -77,8 +77,7 @@ export class ServerListComponent implements OnInit {
       this.notificationService.warn('Deleted Successfully');
     }
   }
-
-  //SOLID Principle 
+  
   signOut(){
     try{
       this.authService.signOut();

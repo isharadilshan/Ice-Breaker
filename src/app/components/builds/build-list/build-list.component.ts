@@ -1,29 +1,28 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TaskService } from 'src/app/shared/utils/task.service';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
-import { MatDialog, MatDialogConfig } from '@angular/material';
-import { TaskComponent } from '../task/task.component';
-import { NotificationService } from 'src/app/shared/notification/notification.service';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialogConfig, MatDialog } from '@angular/material';
 import { AuthService } from 'src/app/shared/auth/auth.service';
+import { BuildService } from 'src/app/shared/utils/build.service';
+import { NotificationService } from 'src/app/shared/notification/notification.service';
+import { BuildComponent } from '../build/build.component';
 
 @Component({
-  selector: 'app-task-list',
-  templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss']
+  selector: 'app-build-list',
+  templateUrl: './build-list.component.html',
+  styleUrls: ['./build-list.component.scss']
 })
-export class TaskListComponent implements OnInit {
+export class BuildListComponent implements OnInit {
 
-  constructor(public authService: AuthService, private service: TaskService, private dialog: MatDialog, private notificationService: NotificationService) { }
+  constructor(public authService: AuthService, private service: BuildService, private dialog: MatDialog, private notificationService: NotificationService) { }
 
-  listData: MatTableDataSource<Task>;
-  displayedColumns: string[] = ["title","description","project","deadlineDate","deadlineTime","priority","addedTime","isDone","actions"];
+  listData: MatTableDataSource<Build>;
+  displayedColumns: string[] = ["server","project","buildDate","buildTime","buildExpireDate","buildExpireTime","buildVersion","buildURL","actions"];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   searchKey: string;
 
   ngOnInit() {
-    this.service.getTasks().subscribe(
+    this.service.getBuilds().subscribe(
       list => {
         let array = list.map(item => {
           return {
@@ -53,7 +52,7 @@ export class TaskListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    this.dialog.open(TaskComponent,dialogConfig);
+    this.dialog.open(BuildComponent,dialogConfig);
   }
 
   onEdit(row){
@@ -62,16 +61,17 @@ export class TaskListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    this.dialog.open(TaskComponent,dialogConfig);
+    this.dialog.open(BuildComponent,dialogConfig);
   }
 
   onDelete($key){
     if(confirm('Are you sure to delete this record ?')){
-      this.service.deleteTask($key);
+      this.service.deleteBuild($key);
       this.notificationService.warn('Deleted Successfully');
     }
   }
 
+  //SOLID Principle 
   signOut(){
     try{
       this.authService.signOut();
@@ -82,15 +82,13 @@ export class TaskListComponent implements OnInit {
 
 }
 
-export class Task {
-  title:string;
-  description:string;
+export class Build {
+  server:string;
   project:string;
-  deadlineDate: string;
-  deadlineTime: string;
-  category: string;
-  priority: string;
-  addedTime: string;
-  isDone: boolean;
-
+  buildDate:string;
+  buildTime: string;
+  buildExpireDate: string;
+  buildExpireTime: string;
+  buildVersion: string;
+  buildURL: string;
 }

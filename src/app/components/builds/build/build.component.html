@@ -1,0 +1,81 @@
+<mat-toolbar>
+    <span>{{service.form.controls['$key'].value?"Modify Task":"Add Task"}}</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+    <mat-grid-list cols="2" rowHeight="300px">
+      <mat-grid-tile>
+
+        <div class="controles-container">
+
+          <input type="hidden" formControlName="$key">
+
+          <mat-form-field>
+            <mat-select formControlName="server" placeholder="Server">
+              <mat-option>None</mat-option>
+              <ng-container *ngFor="let server of servers">
+                <mat-option value="{{server.title}}">{{server.title}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select formControlName="project" placeholder="Project">
+              <mat-option>None</mat-option>
+              <ng-container *ngFor="let project of projects">
+                <mat-option value="{{project.title}}">{{project.title}}</mat-option>
+              </ng-container> 
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input formControlName="buildDate" matInput [matDatepicker]="pickerBuildDate" placeholder="Build Date*">
+            <mat-datepicker-toggle matSuffix [for]="pickerBuildDate"></mat-datepicker-toggle>
+            <mat-datepicker #pickerBuildDate [startAt]="buildDate"></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="time" formControlName="buildTime"  placeholder="Build Time*">
+          </mat-form-field>
+    
+        </div>
+
+      </mat-grid-tile>
+    
+      <mat-grid-tile>
+
+        <div class="controles-container">
+
+            <mat-form-field>
+                <input formControlName="buildExpireDate" matInput [matDatepicker]="pickerBuildExpireDate" placeholder="Build Expire Date*">
+                <mat-datepicker-toggle matSuffix [for]="pickerBuildExpireDate"></mat-datepicker-toggle>
+                <mat-datepicker #pickerBuildExpireDate></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="time" formControlName="buildExpireTime"  placeholder="Build Expire Time*">
+            </mat-form-field>
+    
+            <mat-form-field>
+                <input formControlName="buildVersion" matInput placeholder="Build Version*">
+                <mat-error>This field is mandatory</mat-error>
+            </mat-form-field>
+        
+            <mat-form-field>
+                <input formControlName="buildURL" matInput placeholder="Build URL*">
+                <mat-error>This field is mandatory</mat-error>
+            </mat-form-field>
+    
+            <div class="button-row add-bottom-padding">
+                <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+                <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+            </div>
+    
+        </div>
+
+      </mat-grid-tile>
+
+    </mat-grid-list>  
+
+</form> 
