@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { DeviceService } from 'src/app/shared/utils/device.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
+import { ServerService } from 'src/app/shared/utils/server.service';
 import { MatDialogRef } from '@angular/material';
 
 @Component({
-  selector: 'app-device',
-  templateUrl: './device.component.html',
-  styleUrls: ['./device.component.scss']
+  selector: 'app-server',
+  templateUrl: './server.component.html',
+  styleUrls: ['./server.component.scss']
 })
-export class DeviceComponent implements OnInit {
+export class ServerComponent implements OnInit {
 
-  constructor(public service: DeviceService, private notificationService: NotificationService, public dialogRef: MatDialogRef<DeviceComponent>) { }
+  constructor(public service: ServerService, private notificationService: NotificationService, public dialogRef: MatDialogRef<ServerComponent>) { }
 
   ngOnInit() {
-    this.service.getDevices();
+    this.service.getServers();
   }
 
   onClear(){
@@ -24,9 +24,9 @@ export class DeviceComponent implements OnInit {
   onSubmit(){
     if(this.service.form.valid){
       if(!this.service.form.get('$key').value){
-        this.service.insertDevice(this.service.form.value);
+        this.service.insertServer(this.service.form.value);
       }else{
-        this.service.updateDevice(this.service.form.value);
+        this.service.updateServer(this.service.form.value);
       }
       this.service.form.reset();
       this.service.initializeFormGroup();
