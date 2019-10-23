@@ -1,0 +1,15 @@
+<owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide *ngFor="let build of builds">
+        <mat-card class="example-card mat-elevation-z4" [ngStyle]="priorityStyle(build)">
+        <mat-card-header>
+            <mat-card-title><h2>{{ build.server }}</h2></mat-card-title>
+            <mat-card-subtitle><h2>{{ build.project }}</h2></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <button mat-button [disabled]="true"><h2>{{ build.buildExpireDate | date: 'longDate'}}</h2></button>
+            <span class="fill-remaining-space"></span>
+            <button mat-button [disabled]="true"><h2>@{{ build.buildExpireTime }}</h2></button>
+        </mat-card-content>
+        </mat-card>
+    </ng-template>  
+</owl-carousel-o>

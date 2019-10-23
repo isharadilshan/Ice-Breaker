@@ -22,7 +22,6 @@ import { TaskListComponent } from './components/tasks/task-list/task-list.compon
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ProjectComponent } from './components/projects/project/project.component';
 import { ProjectListComponent } from './components/projects/project-list/project-list.component';
-import { PendingTasksComponent } from './components/pending-tasks/pending-tasks.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
@@ -41,6 +40,8 @@ import { ServerService } from './shared/utils/server.service';
 import { BuildsComponent } from './components/builds/builds.component';
 import { BuildComponent } from './components/builds/build/build.component';
 import { BuildListComponent } from './components/builds/build-list/build-list.component';
+import { DashboardBuildsComponent } from './components/dashboard-builds/dashboard-builds.component';
+import { DashboardTasksComponent } from './components/dashboard-tasks/dashboard-tasks.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,6 @@ import { BuildListComponent } from './components/builds/build-list/build-list.co
     ProjectsComponent,
     ProjectComponent,
     ProjectListComponent,
-    PendingTasksComponent,
     SignupComponent,
     SigninComponent,
     ForgetPasswordComponent,
@@ -67,7 +67,9 @@ import { BuildListComponent } from './components/builds/build-list/build-list.co
     ServerListComponent,
     BuildsComponent,
     BuildComponent,
-    BuildListComponent
+    BuildListComponent,
+    DashboardBuildsComponent,
+    DashboardTasksComponent
   ],
   imports: [
     BrowserModule,

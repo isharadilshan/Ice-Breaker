@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { TaskService } from 'src/app/shared/utils/task.service';
 import { Task } from 'src/app/models/task';
-import { TaskFilterService } from 'src/app/shared/utils/task-filter.service';
+import { FilterService } from 'src/app/shared/utils/filter.service';
 import { ArraySplitterService } from '../../shared/utils/array-splitter.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class PTasksComponent implements OnInit {
   pendingTasks: Task[];
   prioritizedTasks: Task[]=[];
 
-  constructor(private service: TaskService, private priorityService: TaskFilterService, public arraySplitter: ArraySplitterService) { }
+  constructor(private service: TaskService, private filterService: FilterService, public arraySplitter: ArraySplitterService) { }
 
   ngOnInit() {
     this.service.getPendingTasks().subscribe(
@@ -28,7 +28,7 @@ export class PTasksComponent implements OnInit {
           };
         });
         
-        this.prioritizedTasks = this.priorityService.setDeadlinePriority(this.pendingTasks);
+        this.prioritizedTasks = this.filterService.setDeadlinePriority(this.pendingTasks);
         this.prioritizedChunks = this.arraySplitter.chunkify(this.prioritizedTasks,6,true);
         console.log(this.prioritizedChunks);
         [ this.p1Tasks, this.p2Tasks, this.p3Tasks, this.p4Tasks, this.p5Tasks, this.p6Tasks ] = this.prioritizedChunks;

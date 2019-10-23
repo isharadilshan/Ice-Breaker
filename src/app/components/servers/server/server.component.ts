@@ -8,6 +8,8 @@ import { MatDialogRef } from '@angular/material';
   templateUrl: './server.component.html',
   styleUrls: ['./server.component.scss']
 })
+
+
 export class ServerComponent implements OnInit {
 
   constructor(public service: ServerService, private notificationService: NotificationService, public dialogRef: MatDialogRef<ServerComponent>) { }
