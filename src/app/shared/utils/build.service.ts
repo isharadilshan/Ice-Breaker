@@ -44,32 +44,20 @@ export class BuildService {
     return this.buildList.snapshotChanges(); //observable return from this function getTasks
   }
 
-  // getSummaryTasks(){
-  //   this.buildList = this.firebase.list('builds', ref => ref.orderByChild('category').equalTo('summary'));
-  //   return this.buildList.snapshotChanges(); //observable return from this function getTasks
-  // }
-
-  // getPendingTasks(){
-  //   this.buildList = this.firebase.list('tasks', ref => ref.orderByChild('category').equalTo('pending'));
-  //   return this.buildList.snapshotChanges(); //observable return from this function getTasks 
-  // }
-
   insertBuild(build){
 
     this.buildList.push({
       server: build.server,
       project: build.project,
-      buildDate: build.buildDate,
+      buildDate: build.buildDate=="" ? "" : this.datePipe.transform(build.buildDate, 'yyyy-MM-dd'),
       buildTime: build.buildTime,
-      buildExpireDate: build.buildExpireDate,
+      buildExpireDate: build.buildExpireDate=="" ? "" : this.datePipe.transform(build.buildExpireDate, 'yyyy-MM-dd'),
       buildExpireTime: build.buildExpireTime,
       buildVersion: build.buildVersion,
       buildURL: build.buildURL,
-
-      // deadlineDate: build.deadlineDate =="" ? "" : this.datePipe.transform(build.deadlineDate, 'yyyy-MM-dd'),
-      // deadlineTimeStamp: build.deadlineDate !== null ? Date.parse(build.deadlineDate) : null,
-      // deadlineTime: build.deadlineTime,
-      // addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
+      buildTimestamp: Date.parse(build.buildDate)+build.buildTime.split(':')[0]*3600000+build.buildTime.split(':')[1]*60000,
+      buildExpireTimestamp: Date.parse(build.buildExpireDate)+build.buildExpireTime.split(':')[0]*3600000+build.buildExpireTime.split(':')[1]*60000,
+      addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
 
     });
   }
@@ -86,6 +74,10 @@ export class BuildService {
         buildExpireTime: build.buildExpireTime,
         buildVersion: build.buildVersion,
         buildURL: build.buildURL,
+        buildTimestamp: Date.parse(build.buildDate)+build.buildTime.split(':')[0]*3600000+build.buildTime.split(':')[1]*60000,
+        buildExpireTimestamp: Date.parse(build.buildExpireDate)+build.buildExpireTime.split(':')[0]*3600000+build.buildExpireTime.split(':')[1]*60000,
+        addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
+
 
     });
 
@@ -96,7 +88,6 @@ export class BuildService {
   }
 
   populateForm(build){
-    // this.form.setValue(_.omit(build,'addedTime','deadlineTimeStamp'));
-    this.form.setValue(build);
+    this.form.setValue(_.omit(build,'addedTime','buildExpireTimestamp','buildTimestamp'));
   }
 }

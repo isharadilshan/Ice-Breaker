@@ -14,16 +14,10 @@ export class BuildComponent implements OnInit {
 
   projects = [];
   servers = [];
-  buildTime = '';
-  buildDate = '';
-  buildExpireTime = '';
-  buildxpireDate = '';
 
   constructor(public service: BuildService, private projectService: ProjectService, private serverService: ServerService, private notificationService: NotificationService, public dialogRef: MatDialogRef<BuildComponent>) { }
 
   ngOnInit() {
-
-    this.buildTime = 
 
     this.service.getBuilds();
     

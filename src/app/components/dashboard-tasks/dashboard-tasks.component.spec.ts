@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PendingTasksComponent } from './pending-tasks.component';
+import { DashboardTasksComponent } from './dashboard-tasks.component';
 
-describe('PendingTasksComponent', () => {
-  let component: PendingTasksComponent;
-  let fixture: ComponentFixture<PendingTasksComponent>;
+describe('DashboardTasksComponent', () => {
+  let component: DashboardTasksComponent;
+  let fixture: ComponentFixture<DashboardTasksComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PendingTasksComponent ]
+      declarations: [ DashboardTasksComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PendingTasksComponent);
+    fixture = TestBed.createComponent(DashboardTasksComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

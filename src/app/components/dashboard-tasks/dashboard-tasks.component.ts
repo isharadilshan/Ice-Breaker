@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate, query, stagger, animateChild } from '@angular/animations';
+import { Task } from '../tasks/task-list/task-list.component';
+import { TaskService } from 'src/app/shared/utils/task.service';
+import { FilterService } from 'src/app/shared/utils/filter.service';
 import { timer } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Task } from 'src/app/models/task';
-import { TaskService } from 'src/app/shared/utils/task.service';
-import { TaskFilterService } from 'src/app/shared/utils/task-filter.service';
 
 @Component({
-  selector: 'app-pending-tasks',
-  templateUrl: './pending-tasks.component.html',
-  styleUrls: ['./pending-tasks.component.scss'],
+  selector: 'app-dashboard-tasks',
+  templateUrl: './dashboard-tasks.component.html',
+  styleUrls: ['./dashboard-tasks.component.scss'],
   animations: [
     trigger('items', [
       transition(':enter', [
@@ -34,12 +34,13 @@ import { TaskFilterService } from 'src/app/shared/utils/task-filter.service';
   ]
 })
 
-export class PendingTasksComponent implements OnInit {
+
+export class DashboardTasksComponent implements OnInit {
 
   pendingTasks: Task[];
   prioritizedTasks: Task[]=[];
 
-  constructor(private service: TaskService, private priorityService: TaskFilterService) {}
+  constructor(private service: TaskService, private filterService: FilterService) { }
 
   ngOnInit() {
 
@@ -51,7 +52,7 @@ export class PendingTasksComponent implements OnInit {
             ...item.payload.val()//destructuring
           };
         });
-        this.prioritizedTasks = this.priorityService.setDeadlinePriority(this.pendingTasks);
+        this.prioritizedTasks = this.filterService.setDeadlinePriority(this.pendingTasks);
       }
     );//observable to get data on init
 
@@ -76,7 +77,6 @@ export class PendingTasksComponent implements OnInit {
           
         })
       ).subscribe();
-
   }
 
   priorityStyle(task){

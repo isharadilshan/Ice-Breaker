@@ -12,6 +12,8 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss']
 })
+
+
 export class TaskComponent implements OnInit {
 
   form: FormGroup;

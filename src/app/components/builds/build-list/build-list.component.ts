@@ -14,12 +14,12 @@ export class BuildListComponent implements OnInit {
 
   constructor(public authService: AuthService, private service: BuildService, private dialog: MatDialog, private notificationService: NotificationService) { }
 
+  searchKey: string;
   listData: MatTableDataSource<Build>;
   displayedColumns: string[] = ["server","project","buildDate","buildTime","buildExpireDate","buildExpireTime","buildVersion","buildURL","actions"];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  searchKey: string;
 
   ngOnInit() {
     this.service.getBuilds().subscribe(
@@ -52,6 +52,7 @@ export class BuildListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
+    dialogConfig.height = "70%";
     this.dialog.open(BuildComponent,dialogConfig);
   }
 
@@ -61,6 +62,7 @@ export class BuildListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
+    dialogConfig.height = "70%";
     this.dialog.open(BuildComponent,dialogConfig);
   }
 
@@ -71,7 +73,6 @@ export class BuildListComponent implements OnInit {
     }
   }
 
-  //SOLID Principle 
   signOut(){
     try{
       this.authService.signOut();

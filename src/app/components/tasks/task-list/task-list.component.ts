@@ -11,16 +11,18 @@ import { AuthService } from 'src/app/shared/auth/auth.service';
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss']
 })
+
+
 export class TaskListComponent implements OnInit {
 
   constructor(public authService: AuthService, private service: TaskService, private dialog: MatDialog, private notificationService: NotificationService) { }
 
+  searchKey: string;
   listData: MatTableDataSource<Task>;
   displayedColumns: string[] = ["title","description","project","deadlineDate","deadlineTime","priority","addedTime","isDone","actions"];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  searchKey: string;
 
   ngOnInit() {
     this.service.getTasks().subscribe(

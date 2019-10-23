@@ -14,12 +14,12 @@ export class ServerListComponent implements OnInit {
 
   constructor(public authService: AuthService, private service: ServerService, private dialog: MatDialog, private notificationService: NotificationService) { }
 
+  searchKey: string;
   listData: MatTableDataSource<Server>;
   displayedColumns: string[] = ['title','url','actions'];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  searchKey: string;
 
   ngOnInit() {
 
