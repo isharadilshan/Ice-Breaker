@@ -37,22 +37,22 @@ import { tap } from 'rxjs/operators';
 
 export class DashboardTasksComponent implements OnInit {
 
-  pendingTasks: Task[];
+  tasks: Task[];
   prioritizedTasks: Task[]=[];
 
   constructor(private service: TaskService, private filterService: FilterService) { }
 
   ngOnInit() {
 
-    this.service.getPendingTasks().subscribe(
+    this.service.getTasks().subscribe(
       list => {
-        this.pendingTasks = list.map(item => {
+        this.tasks = list.map(item => {
           return {
             $key: item.key,
             ...item.payload.val()//destructuring
           };
         });
-        this.prioritizedTasks = this.filterService.setDeadlinePriority(this.pendingTasks);
+        this.prioritizedTasks = this.filterService.setTaskPriority(this.tasks);
       }
     );//observable to get data on init
 
@@ -72,8 +72,6 @@ export class DashboardTasksComponent implements OnInit {
         tap(v => {
           
           this.prioritizedTasks.push(item);
-
-          //increment i from 5. and pass that sub array to the front end
           
         })
       ).subscribe();
@@ -83,19 +81,19 @@ export class DashboardTasksComponent implements OnInit {
     let styles;
     if(task.priority == 'overdue'){
       styles = {
-        'background-color': '#A1887F'
+        'background-color': '#A1887F'//mat-brown
       };
-    }else if(task.priority == 'red'){
+    }else if(task.priority == 'high'){
       styles = {
-        'background-color': '#f44336'
+        'background-color': '#f44336'//mat-red
       };
-    }else if(task.priority == 'yellow'){
+    }else if(task.priority == 'medium'){
       styles = {
-        'background-color': '#FBC02D'
+        'background-color': '#81C784'//mat-green
       };
     }else{
       styles = {
-        'background-color': '#81C784'
+        'background-color': '#FBC02D'//mat-yellow
       };
     }
     return styles;

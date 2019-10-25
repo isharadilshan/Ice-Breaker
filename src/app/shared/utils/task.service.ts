@@ -14,7 +14,6 @@ export class TaskService {
     title: new FormControl('',Validators.required),
     description: new FormControl('',Validators.required),
     project: new FormControl('',Validators.required),
-    category: new FormControl('',Validators.required),
     priority: new FormControl('',Validators.required),
     deadlineDate: new FormControl('',Validators.required),
     deadlineTime: new FormControl('',Validators.required),
@@ -32,7 +31,6 @@ export class TaskService {
       title: '',
       description: '',
       project: '',
-      category: '',
       priority: '',
       deadlineDate: '',
       deadlineTime: '',
@@ -60,12 +58,11 @@ export class TaskService {
       title: task.title,
       description: task.description,
       project: task.project,
-      category: task.category,
       priority: task.priority,
       deadlineDate: task.deadlineDate =="" ? "" : this.datePipe.transform(task.deadlineDate, 'yyyy-MM-dd'),
-      deadlineTimeStamp: task.deadlineDate !== null ? Date.parse(task.deadlineDate) : null,
       deadlineTime: task.deadlineTime,
-      addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
+      deadlineTimeStamp: task.deadlineDate !== null ? Date.parse(task.deadlineDate)+task.deadlineTime.split(':')[0]*3600000+task.deadlineTime.split(':')[1]*60000 : null,
+      addedTime: Date.now(),
       isDone: task.isDone
 
     });
@@ -77,12 +74,10 @@ export class TaskService {
         title: task.title,
         description: task.description,
         project: task.project,
-        category: task.category,
         priority: task.priority,
         deadlineDate: task.deadlineDate =="" ? "" : this.datePipe.transform(task.deadlineDate, 'yyyy-MM-dd'),
-        deadlineTimeStamp: task.deadlineDate !== null ? Date.parse(task.deadlineDate) : null,
         deadlineTime: task.deadlineTime,
-        // addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
+        deadlineTimeStamp: task.deadlineDate !== null ? Date.parse(task.deadlineDate)+task.deadlineTime.split(':')[0]*3600000+task.deadlineTime.split(':')[1]*60000 : null,
         isDone: task.isDone
 
     });
@@ -93,6 +88,6 @@ export class TaskService {
   }
 
   populateForm(task){
-    this.form.setValue(_.omit(task,'addedTime','deadlineTimeStamp'));
+    this.form.setValue(_.omit(task,'addedTime','deadlineTimeStamp','category'));
   }
 }

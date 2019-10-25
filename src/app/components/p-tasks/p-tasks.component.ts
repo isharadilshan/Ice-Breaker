@@ -28,7 +28,7 @@ export class PTasksComponent implements OnInit {
           };
         });
         
-        this.prioritizedTasks = this.filterService.setDeadlinePriority(this.pendingTasks);
+        this.prioritizedTasks = this.filterService.setTaskPriority(this.pendingTasks);
         this.prioritizedChunks = this.arraySplitter.chunkify(this.prioritizedTasks,6,true);
         console.log(this.prioritizedChunks);
         [ this.p1Tasks, this.p2Tasks, this.p3Tasks, this.p4Tasks, this.p5Tasks, this.p6Tasks ] = this.prioritizedChunks;
