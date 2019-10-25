@@ -55,9 +55,9 @@ export class BuildService {
       buildExpireTime: build.buildExpireTime,
       buildVersion: build.buildVersion,
       buildURL: build.buildURL,
-      buildTimestamp: Date.parse(build.buildDate)+build.buildTime.split(':')[0]*3600000+build.buildTime.split(':')[1]*60000,
-      buildExpireTimestamp: Date.parse(build.buildExpireDate)+build.buildExpireTime.split(':')[0]*3600000+build.buildExpireTime.split(':')[1]*60000,
-      addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
+      buildTimestamp: build.buildDate !== null ? Date.parse(build.buildDate)+build.buildTime.split(':')[0]*3600000+build.buildTime.split(':')[1]*60000 : null,
+      buildExpireTimestamp: build.buildExpireDate !== null ? Date.parse(build.buildExpireDate)+build.buildExpireTime.split(':')[0]*3600000+build.buildExpireTime.split(':')[1]*60000 : null,
+      addedTime: Date.now(),
 
     });
   }
@@ -74,8 +74,8 @@ export class BuildService {
         buildExpireTime: build.buildExpireTime,
         buildVersion: build.buildVersion,
         buildURL: build.buildURL,
-        buildTimestamp: Date.parse(build.buildDate)+build.buildTime.split(':')[0]*3600000+build.buildTime.split(':')[1]*60000,
-        buildExpireTimestamp: Date.parse(build.buildExpireDate)+build.buildExpireTime.split(':')[0]*3600000+build.buildExpireTime.split(':')[1]*60000,
+        buildTimestamp: build.buildDate !== null ? Date.parse(build.buildDate)+build.buildTime.split(':')[0]*3600000+build.buildTime.split(':')[1]*60000 : null,
+        buildExpireTimestamp: build.buildExpireDate !== null ? Date.parse(build.buildExpireDate)+build.buildExpireTime.split(':')[0]*3600000+build.buildExpireTime.split(':')[1]*60000 : null,
         addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
 
 

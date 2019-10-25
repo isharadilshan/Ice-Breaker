@@ -90,7 +90,6 @@ export class Task {
   project:string;
   deadlineDate: string;
   deadlineTime: string;
-  category: string;
   priority: string;
   addedTime: string;
   isDone: boolean;

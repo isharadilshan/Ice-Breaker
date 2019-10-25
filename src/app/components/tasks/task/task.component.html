@@ -24,17 +24,13 @@
             <mat-option>None</mat-option>
             <ng-container *ngFor="let project of projects">
               <mat-option value="{{project.title}}">{{project.title}}</mat-option>
-            </ng-container>
-            
+            </ng-container>   
           </mat-select>
         </mat-form-field>
-        
-        <mat-form-field>
-          <mat-select formControlName="category" placeholder="Category">
-            <mat-option value="pending">Pending</mat-option>
-            <mat-option value="summary">Summary</mat-option>
-          </mat-select>
-        </mat-form-field>
+
+        <div class="add-bottom-padding">
+          <mat-checkbox formControlName="isDone">Is Task Done</mat-checkbox>
+        </div>
   
       </div>
     </mat-grid-tile>
@@ -44,9 +40,9 @@
   
         <mat-form-field>
           <mat-select formControlName="priority" placeholder="Priority">
-            <mat-option value="red">High</mat-option>
-            <mat-option value="yellow">Medium</mat-option>
-            <mat-option value="green">Low</mat-option>
+            <mat-option value="high">High</mat-option>
+            <mat-option value="medium">Medium</mat-option>
+            <mat-option value="low">Low</mat-option>
           </mat-select>
         </mat-form-field>
   
@@ -59,10 +55,6 @@
         <mat-form-field>
           <input matInput type="time" formControlName="deadlineTime"  placeholder="Time*">
         </mat-form-field>
-  
-        <div class="add-bottom-padding">
-          <mat-checkbox formControlName="isDone">Is Task Done</mat-checkbox>
-        </div>
   
         <div class="button-row add-bottom-padding">
           <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>

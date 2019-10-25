@@ -10,24 +10,22 @@ export class FilterService {
 
   prioritizedTasks: Task[]=[];
   prioritizedBuilds: Build[]= [];
+  dayMargin = Const.SECONDS_FOR_ONE_DAYS;
 
   constructor() { }
 
-  setDeadlinePriority(tasks){
+  setTaskPriority(tasks){
 
     this.prioritizedTasks = tasks.map(element => {
 
       let ets = element.deadlineTimeStamp - Date.now();
-      let day1 = Const.SECONDS_FOR_ONE_DAYS;
-      let day2 = Const.SECONDS_FOR_TWO_DAYS;
-      let day4 = Const.SECONDS_FOR_FOUR_DAYS;
 
       if (ets < 0){ 
         // element.deadline = 'overdue';
         element.priority = 'overdue';
-      }else if(ets > 0 && ets < day1){
+      }else if(ets > 0 && ets < this.dayMargin){
         // element.deadline = 'red';
-        element.priority = 'red';
+        element.priority = 'high';
       }else{
         element.deadline = 'normal';
       }
@@ -44,13 +42,10 @@ export class FilterService {
 
       let ets = element.buildExpireTimestamp - Date.now();
       let bld = Date.now() - element.buildTimestamp;
-      let day1 = Const.SECONDS_FOR_ONE_DAYS;
-      let day2 = Const.SECONDS_FOR_TWO_DAYS;
-      let day4 = Const.SECONDS_FOR_FOUR_DAYS;
 
       if (ets < 0){ 
         element.priority = 'overdue';
-      }else if(bld > 0 && bld < day1){
+      }else if(bld > 0 && bld < this.dayMargin){
         element.priority = 'green';
       }else{
         element.priority = 'normal';
