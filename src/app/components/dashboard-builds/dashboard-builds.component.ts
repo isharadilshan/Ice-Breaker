@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BuildService } from 'src/app/shared/utils/build.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Router } from '@angular/router';
 import { Build } from '../builds/build-list/build-list.component';
 import { FilterService } from 'src/app/shared/utils/filter.service';
 
@@ -14,7 +15,7 @@ export class DashboardBuildsComponent implements OnInit {
   builds: Build[];
   prioritizedBuilds: Build[]=[];
 
-  constructor(private service: BuildService, private filterService: FilterService) { }
+  constructor(private service: BuildService, private filterService: FilterService, private router:Router) { }
 
   ngOnInit() {
 
@@ -28,7 +29,6 @@ export class DashboardBuildsComponent implements OnInit {
         });
 
         this.prioritizedBuilds = this.filterService.setBuildPriority(this.builds);
-        console.log(this.prioritizedBuilds);
       }
     );//observable to get data on init
 
@@ -50,6 +50,10 @@ export class DashboardBuildsComponent implements OnInit {
       };
     }
     return styles;
+  }
+
+  navigate(build){
+    window.location.href = build.buildURL;
   }
 
   customOptions: OwlOptions = {

@@ -26,6 +26,7 @@ export class BuildService {
   buildList: AngularFireList<any>;
 
   initializeFormGroup(){
+
     this.form.setValue({
       $key: null,
       server: '',

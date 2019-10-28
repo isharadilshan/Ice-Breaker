@@ -22,7 +22,7 @@
     </ng-container>
     <ng-container matColumnDef="project">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Assigned Project</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{ element.project }}</mat-cell>
+      <mat-cell *matCellDef="let element">{{ element.project | uppercase }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="deadlineDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Deadline Date</mat-header-cell>
@@ -34,7 +34,7 @@
     </ng-container>
     <ng-container matColumnDef="priority">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Priority</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{ element.priority }}</mat-cell>
+      <mat-cell *matCellDef="let element">{{ element.priority | uppercase }}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="addedTime">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Added Time</mat-header-cell>

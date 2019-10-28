@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <span>{{service.form.controls['$key'].value?"Modify Task":"Add Task"}}</span>
+    <span>{{service.form.controls['$key'].value?"Modify Build":"Add Build"}}</span>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
@@ -30,13 +30,13 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input formControlName="buildDate" matInput [matDatepicker]="pickerBuildDate" placeholder="Build Date*">
+            <input formControlName="buildDate" matInput [matDatepicker]="pickerBuildDate" [formControl]="buildDate" placeholder="Build Date*">
             <mat-datepicker-toggle matSuffix [for]="pickerBuildDate"></mat-datepicker-toggle>
-            <mat-datepicker #pickerBuildDate [startAt]="buildDate"></mat-datepicker>
+            <mat-datepicker #pickerBuildDate ></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput type="time" formControlName="buildTime"  placeholder="Build Time*">
+            <input matInput type="time" formControlName="buildTime" value="09:00:00" placeholder="Build Time*">
           </mat-form-field>
     
         </div>
@@ -45,16 +45,16 @@
     
       <mat-grid-tile>
 
-        <div class="controles-container">
+        <div class="controles-container top-margin">
 
             <mat-form-field>
-                <input formControlName="buildExpireDate" matInput [matDatepicker]="pickerBuildExpireDate" placeholder="Build Expire Date*">
+                <input formControlName="buildExpireDate" matInput [matDatepicker]="pickerBuildExpireDate" [formControl]="buildExpireDate" placeholder="Build Expire Date*">
                 <mat-datepicker-toggle matSuffix [for]="pickerBuildExpireDate"></mat-datepicker-toggle>
                 <mat-datepicker #pickerBuildExpireDate></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput type="time" formControlName="buildExpireTime"  placeholder="Build Expire Time*">
+                <input matInput type="time" formControlName="buildExpireTime" value="09:00:00" placeholder="Build Expire Time*">
             </mat-form-field>
     
             <mat-form-field>

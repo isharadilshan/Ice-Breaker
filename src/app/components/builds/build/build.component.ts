@@ -4,20 +4,27 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
 import { MatDialogRef } from '@angular/material';
 import { ServerService } from 'src/app/shared/utils/server.service';
 import { BuildService } from 'src/app/shared/utils/build.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-build',
   templateUrl: './build.component.html',
   styleUrls: ['./build.component.scss']
 })
+
+
 export class BuildComponent implements OnInit {
 
   projects = [];
   servers = [];
+  buildDate;
+  buildExpireDate;
 
   constructor(public service: BuildService, private projectService: ProjectService, private serverService: ServerService, private notificationService: NotificationService, public dialogRef: MatDialogRef<BuildComponent>) { }
 
   ngOnInit() {
+
+    this.setDates();
 
     this.service.getBuilds();
     
@@ -69,6 +76,18 @@ export class BuildComponent implements OnInit {
     this.service.form.reset();
     this.service.initializeFormGroup();
     this.dialogRef.close();
+  }
+
+  setDates(){
+
+    var today = new Date();
+    var weekAfterToday = today.getTime()+60*60*24*7*1000;
+
+    
+    this.buildDate = new FormControl(new Date());
+    this.buildExpireDate = new FormControl(new Date(weekAfterToday));
+    console.log(new Date());
+
   }
 
 }
