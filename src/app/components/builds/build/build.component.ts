@@ -24,7 +24,10 @@ export class BuildComponent implements OnInit {
 
   ngOnInit() {
 
-    this.setDates();
+  
+    if(!this.service.form.controls['$key'].value){
+      this.setDates();
+    }
 
     this.service.getBuilds();
     
@@ -81,12 +84,10 @@ export class BuildComponent implements OnInit {
   setDates(){
 
     var today = new Date();
-    var weekAfterToday = today.getTime()+60*60*24*7*1000;
+    var weekAfterToday = today.getTime()+60*60*24*7*1000;//add miliseconds for one week
 
-    
     this.buildDate = new FormControl(new Date());
     this.buildExpireDate = new FormControl(new Date(weekAfterToday));
-    console.log(new Date());
 
   }
 
