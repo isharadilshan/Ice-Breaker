@@ -13,10 +13,10 @@ export class BuildService {
     $key: new FormControl(null),
     server: new FormControl('',Validators.required),
     project: new FormControl('',Validators.required),
-    buildDate: new FormControl('',Validators.required),
-    buildTime: new FormControl('',Validators.required),
-    buildExpireDate: new FormControl('',Validators.required),
-    buildExpireTime: new FormControl('',Validators.required),
+    buildDate: new FormControl(''),
+    buildTime: new FormControl(''),
+    buildExpireDate: new FormControl(''),
+    buildExpireTime: new FormControl(''),
     buildVersion: new FormControl('',Validators.required),
     buildURL: new FormControl('',Validators.required)
   });
@@ -79,9 +79,7 @@ export class BuildService {
         buildExpireTimestamp: build.buildExpireDate !== null ? Date.parse(build.buildExpireDate)+build.buildExpireTime.split(':')[0]*3600000+build.buildExpireTime.split(':')[1]*60000 : null,
         addedTime: Date.now(),//var date = new Date(timestamp) // Wed Nov 23 2016 18:03:25 GMT+0800 (WITA)
 
-
     });
-
   }
 
   deleteBuild($key: string){
