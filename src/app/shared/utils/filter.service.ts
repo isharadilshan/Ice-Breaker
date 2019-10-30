@@ -10,7 +10,7 @@ export class FilterService {
 
   prioritizedTasks: Task[]=[];
   prioritizedBuilds: Build[]= [];
-  dayMargin = Const.SECONDS_FOR_ONE_DAYS;
+  dayMargin = Const.MILISECONDS_FOR_ONE_HOUR*18;//miliseconds for 18 hours
 
   constructor() { }
 
@@ -21,10 +21,8 @@ export class FilterService {
       let ets = element.deadlineTimeStamp - Date.now();
 
       if (ets < 0){ 
-        // element.deadline = 'overdue';
         element.priority = 'overdue';
       }else if(ets > 0 && ets < this.dayMargin){
-        // element.deadline = 'red';
         element.priority = 'high';
       }else{
         element.deadline = 'normal';
