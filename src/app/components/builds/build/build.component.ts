@@ -17,8 +17,6 @@ export class BuildComponent implements OnInit {
 
   projects = [];
   servers = [];
-  buildDate;
-  buildExpireDate;
 
   constructor(public service: BuildService, private projectService: ProjectService, private serverService: ServerService, private notificationService: NotificationService, public dialogRef: MatDialogRef<BuildComponent>) { }
 
@@ -26,7 +24,7 @@ export class BuildComponent implements OnInit {
 
   
     if(!this.service.form.controls['$key'].value){
-      this.setDates();
+      // this.setDates();
     }
 
     this.service.getBuilds();
@@ -81,14 +79,14 @@ export class BuildComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  setDates(){
+  // setDates(){
 
-    var today = new Date();
-    var weekAfterToday = today.getTime()+60*60*24*7*1000;//add miliseconds for one week
+  //   var today = new Date();
+  //   var weekAfterToday = today.getTime()+60*60*24*7*1000;//add miliseconds for one week
 
-    this.buildDate = new FormControl(new Date());
-    this.buildExpireDate = new FormControl(new Date(weekAfterToday));
+  //   this.buildDate = new FormControl(new Date());
+  //   this.buildExpireDate = new FormControl(new Date(weekAfterToday));
 
-  }
+  // }
 
 }
