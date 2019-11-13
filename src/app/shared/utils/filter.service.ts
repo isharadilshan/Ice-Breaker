@@ -41,12 +41,16 @@ export class FilterService {
       let ets = element.buildExpireTimestamp - Date.now();
       let bld = Date.now() - element.buildTimestamp;
 
+      if(bld<0){
+        bld = -bld;
+      }
+
       if (ets < 0){ 
         element.priority = 'overdue';
-      }else if(bld > 0 && bld < this.dayMargin){
-        element.priority = 'green';
-      }else{
+      }else if(bld > this.dayMargin){
         element.priority = 'normal';
+      }else{
+        element.priority = 'today';
       }
       return element;
     });

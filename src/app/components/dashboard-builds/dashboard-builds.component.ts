@@ -38,15 +38,15 @@ export class DashboardBuildsComponent implements OnInit {
     let styles;
     if(build.priority == 'overdue'){
       styles = {
-        'background-color': '#f44336'
+        'background-color': '#f44336'//red
       };
-    }else if(build.priority == 'green'){
+    }else if(build.priority == 'today'){
       styles = {
-        'background-color': '#81C784'
+        'background-color': '#81C784'//green
       };
-    }else{
+    }else{//priority normal
       styles = {
-        'background-color': '#3F51B5'
+        'background-color': '#3F51B5'//blue
       };
     }
     return styles;
