@@ -1,8 +1,8 @@
 import { Injectable, NgZone } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
+import { AngularFirestoreDocument, AngularFirestore } from 'angularfire2/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class AuthService {
 
   userData: any; // Save logged in user data
 
-  constructor(public afs: AngularFirestore, public afAuth: AngularFireAuth, public router: Router, public ngZone: NgZone) { 
+  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, private router: Router, public ngZone: NgZone) { 
 
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -52,7 +52,6 @@ export class AuthService {
         this.sendVerificationMail();
         this.setUserData(result.user);
 
-
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -65,7 +64,7 @@ export class AuthService {
       this.router.navigate(['verify-email']);
     })
   }
-
+ 
   // Reset Forgot password
   forgotPassword(passwordResetEmail) {
     return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail)
