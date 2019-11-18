@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import * as _ from 'lodash';
@@ -42,7 +42,7 @@ export class BuildService {
 
   getBuilds(){
     this.buildList = this.firebase.list('builds');
-    return this.buildList.snapshotChanges(); //observable return from this function getTasks
+    return this.buildList.snapshotChanges(); //observable return from getTasks
   }
 
   insertBuild(build){

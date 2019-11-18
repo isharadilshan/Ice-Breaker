@@ -8,8 +8,6 @@ import { AuthService } from 'src/app/shared/auth/auth.service';
 })
 export class VerifyEmailComponent implements OnInit {
 
-  userData = this.authService.userData;
-
   constructor(public authService: AuthService) { }
 
   ngOnInit() {

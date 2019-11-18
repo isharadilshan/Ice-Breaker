@@ -42,6 +42,7 @@ import { BuildComponent } from './components/builds/build/build.component';
 import { BuildListComponent } from './components/builds/build-list/build-list.component';
 import { DashboardBuildsComponent } from './components/dashboard-builds/dashboard-builds.component';
 import { DashboardTasksComponent } from './components/dashboard-tasks/dashboard-tasks.component';
+import { CreatedComponent } from './pages/created/created/created.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { DashboardTasksComponent } from './components/dashboard-tasks/dashboard-
     BuildComponent,
     BuildListComponent,
     DashboardBuildsComponent,
-    DashboardTasksComponent
+    DashboardTasksComponent,
+    CreatedComponent
   ],
   imports: [
     BrowserModule,
