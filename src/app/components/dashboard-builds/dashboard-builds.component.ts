@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BuildService } from 'src/app/shared/utils/build.service';
+import { BuildService } from 'src/app/shared/utils/services/build.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Router } from '@angular/router';
-import { Build } from '../builds/build-list/build-list.component';
 import { FilterService } from 'src/app/shared/utils/filter.service';
+import { Build } from 'src/app/models/build';
 
 @Component({
   selector: 'app-dashboard-builds',

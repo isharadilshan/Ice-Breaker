@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate, query, stagger, animateChild } from '@angular/animations';
-import { Task } from '../tasks/task-list/task-list.component';
-import { TaskService } from 'src/app/shared/utils/task.service';
+import { TaskService } from 'src/app/shared/utils/services/task.service';
 import { FilterService } from 'src/app/shared/utils/filter.service';
 import { timer } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Task } from 'src/app/models/task';
 
 @Component({
   selector: 'app-dashboard-tasks',

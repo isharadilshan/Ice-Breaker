@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TaskService } from 'src/app/shared/utils/task.service';
+import { TaskService } from 'src/app/shared/utils/services/task.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TaskComponent } from '../task/task.component';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 import { AuthService } from 'src/app/shared/auth/auth.service';
+import { Task } from 'src/app/models/task';
 
 @Component({
   selector: 'app-task-list',
@@ -81,17 +82,5 @@ export class TaskListComponent implements OnInit {
       console.log("Error occurs when trying to sign out ///"+err);
     }
   }
-
-}
-
-export class Task {
-  title:string;
-  description:string;
-  project:string;
-  deadlineDate: string;
-  deadlineTime: string;
-  priority: string;
-  addedTime: string;
-  isDone: boolean;
 
 }

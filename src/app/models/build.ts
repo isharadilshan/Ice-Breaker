@@ -1,12 +1,10 @@
 export class Build {
-    constructor(
-        public server:string,
-        public project:string,
-        public buildDate: string,
-        public buildTime: string,
-        public buildExpireDate: string,
-        public buildExpireTime: string,
-        public buildVersion: string,
-        public buildURL: string
-    ){}
+    server:string;
+    project:string;
+    buildDate:string;
+    buildTime: string;
+    buildExpireDate: string;
+    buildExpireTime: string;
+    buildVersion: string;
+    buildURL: string;
 }

@@ -30,7 +30,7 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input formControlName="buildDate" matInput [matDatepicker]="pickerBuildDate" [(ngModel)]="this.buildDate" placeholder="Build Date*">
+            <input formControlName="buildDate" matInput [matDatepicker]="pickerBuildDate" placeholder="Build Date*">
             <mat-datepicker-toggle matSuffix [for]="pickerBuildDate"></mat-datepicker-toggle>
             <mat-datepicker #pickerBuildDate ></mat-datepicker>
           </mat-form-field>
@@ -48,7 +48,7 @@
         <div class="controles-container top-margin">
 
             <mat-form-field>
-                <input formControlName="buildExpireDate" matInput [matDatepicker]="pickerBuildExpireDate" [formControl]="buildExpireDate" placeholder="Build Expire Date*">
+                <input formControlName="buildExpireDate" matInput [matDatepicker]="pickerBuildExpireDate" placeholder="Build Expire Date*">
                 <mat-datepicker-toggle matSuffix [for]="pickerBuildExpireDate"></mat-datepicker-toggle>
                 <mat-datepicker #pickerBuildExpireDate></mat-datepicker>
             </mat-form-field>

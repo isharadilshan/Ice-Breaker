@@ -1,8 +1,9 @@
 import { Injectable, NgZone } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,11 @@ import { User } from '../../models/user';
 export class AuthService {
 
   userData: any; // Save logged in user data
+  public currentUser: any;
+  public userStatus: string;
+  public userStatusChanges: BehaviorSubject<string> = new BehaviorSubject<string>(this.userStatus);
 
-  constructor(public afs: AngularFirestore, public afAuth: AngularFireAuth, public router: Router, public ngZone: NgZone) { 
+  constructor(public firestore: AngularFirestore, public afAuth: AngularFireAuth, public router: Router, public ngZone: NgZone) { 
 
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -28,16 +32,33 @@ export class AuthService {
 
   }
 
+  setUserStatus(userStatus) {
+    this.userStatus = userStatus;
+    this.userStatusChanges.next(userStatus);
+  }
+
   //Sign in with email/password
   signIn(email, password) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.ngZone.run(() => {
+        // this.ngZone.run(() => {
 
-          this.router.navigate(['admin-panel']);
+        //   this.router.navigate(['admin-panel']);
           
-        });
-        this.setUserData(result.user);
+        // });
+        this.firestore.collection("users").ref.where("email", "==", result.user.email).onSnapshot(snap =>{
+          snap.forEach(userRef => {
+            console.log("userRef", userRef.data());
+            this.currentUser = userRef.data();
+            //setUserStatus
+            this.setUserStatus(this.currentUser)
+            if(userRef.data().role == "adminUser" || userRef.data().role == "normalUser") {
+              this.router.navigate(["admin-panel"]);
+            }else{
+              this.router.navigate(["request-permission"]);
+            }
+          })
+        })
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -47,11 +68,13 @@ export class AuthService {
   signUp(email, password) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
+
+        this.currentUser = result.user;
+          this.setUserStatus(this.currentUser);
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
         this.sendVerificationMail();
         this.setUserData(result.user);
-
 
       }).catch((error) => {
         window.alert(error.message)
@@ -86,13 +109,12 @@ export class AuthService {
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
   setUserData(user) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    const userRef: AngularFirestoreDocument<any> = this.firestore.doc(`users/${user.uid}`);
     const userData: User = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL,
-      emailVerified: user.emailVerified
+      role: "user"
     }
     return userRef.set(userData, {
       merge: true
@@ -103,10 +125,41 @@ export class AuthService {
   signOut() {
     return this.afAuth.auth.signOut().then(() => {
       localStorage.removeItem('user');
+      //set current user to null to be logged out
+      this.currentUser = null;
+      //set the listenener to be null, for the UI to react
+      this.setUserStatus(null);
       this.router.navigate(['sign-in']);
     }).catch(() => {
       console.log('Cannot remove user from local storage');
     });
+  }
+
+  userChanges(){
+    this.afAuth.auth.onAuthStateChanged(currentUser => {
+      if(currentUser){
+        this.firestore.collection("users").ref.where("email", "==", currentUser.email).onSnapshot(snap =>{
+          snap.forEach(userRef => {
+            this.currentUser = userRef.data();
+            //setUserStatus
+            this.setUserStatus(this.currentUser);
+            console.log(this.userStatus)
+            
+            if(userRef.data().role == "adminUser" || userRef.data().role == "normalUser") {
+              this.ngZone.run(() => this.router.navigate(["admin-panel"])); 
+             
+            }else{
+              this.ngZone.run(() => this.router.navigate(["request-permission"]));
+            }
+          })
+        })
+      }else{
+        //this is the error you where looking at the video that I wasn't able to fix
+        //the function is running on refresh so its checking if the user is logged in or not
+        //hence the redirect to the login
+        this.ngZone.run(() => this.router.navigate(["sign-in"]));
+      }
+    })
   }
 
 }
