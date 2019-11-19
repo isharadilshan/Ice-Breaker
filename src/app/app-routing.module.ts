@@ -9,6 +9,7 @@ import { VerifyEmailComponent } from './pages/verify-email/verify-email.componen
 
 import { SecuredInnerPagesGuard } from "./shared/guard/secured-inner-pages.guard";
 import { AuthGuard } from './shared/guard/auth.guard';
+// import { RequestPermissionComponent } from './components/request-permssion/request-permission/request-permission.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'sign-in', component: SigninComponent, canActivate: [ SecuredInnerPagesGuard ] },
   { path: 'sign-up', component: SignupComponent, canActivate: [ SecuredInnerPagesGuard ] },
   { path: 'forgot-password', component: ForgetPasswordComponent, canActivate: [ SecuredInnerPagesGuard ] },
-  { path: 'verify-email', component: VerifyEmailComponent, canActivate: [ SecuredInnerPagesGuard ] }
+  { path: 'verify-email', component: VerifyEmailComponent, canActivate: [ SecuredInnerPagesGuard ] },
+  // { path: 'request-permission', component: RequestPermissionComponent, canActivate: [ SecuredInnerPagesGuard ] }
   
 ];
 

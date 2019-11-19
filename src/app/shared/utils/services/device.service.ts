@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Injectable({
@@ -9,8 +9,11 @@ export class DeviceService {
 
   form: FormGroup = new FormGroup({
     $key: new FormControl(null),
-    title: new FormControl('',Validators.required),
-    code: new FormControl('',Validators.required)
+    type: new FormControl('',Validators.required),
+    description: new FormControl('',Validators.required),
+    comments: new FormControl('',Validators.required),
+    status: new FormControl('',Validators.required),
+    barcode: new FormControl('',Validators.required)
   });
 
   constructor(private firebase: AngularFireDatabase) { }
@@ -20,8 +23,11 @@ export class DeviceService {
   initializeFormGroup(){  
     this.form.setValue({
       $key: null,
-      title: '',
-      code: ''
+      type: '',
+      description: '',
+      comments: '',
+      status: '',
+      barcode: ''
     });
   }
 
@@ -32,15 +38,21 @@ export class DeviceService {
 
   insertDevice(device){
     this.deviceList.push({
-      title: device.title,
-      code: device.code
+      type: device.type,
+      description: device.description,
+      comments: device.comments,
+      status: device.status,
+      barcode: device.barcode
     });
   }
 
   updateDevice(device){
     this.deviceList.update(device.$key,{
-      title: device.title,
-      code: device.code
+      type: device.type,
+      description: device.description,
+      comments: device.comments,
+      status: device.status,
+      barcode: device.barcode
     });
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DeviceService } from 'src/app/shared/utils/device.service';
+import { DeviceService } from 'src/app/shared/utils/services/device.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 import { MatDialogRef } from '@angular/material';
 

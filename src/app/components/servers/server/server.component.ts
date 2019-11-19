@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
-import { ServerService } from 'src/app/shared/utils/server.service';
+import { ServerService } from 'src/app/shared/utils/services/server.service';
 import { MatDialogRef } from '@angular/material';
 
 @Component({

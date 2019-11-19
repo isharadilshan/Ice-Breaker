@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialogConfig, MatDialog } from '@angular/material';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-import { BuildService } from 'src/app/shared/utils/build.service';
+import { BuildService } from 'src/app/shared/utils/services/build.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 import { BuildComponent } from '../build/build.component';
+import { Build } from 'src/app/models/build';
 
 @Component({
   selector: 'app-build-list',
@@ -81,15 +82,4 @@ export class BuildListComponent implements OnInit {
     }
   }
 
-}
-
-export class Build {
-  server:string;
-  project:string;
-  buildDate:string;
-  buildTime: string;
-  buildExpireDate: string;
-  buildExpireTime: string;
-  buildVersion: string;
-  buildURL: string;
 }

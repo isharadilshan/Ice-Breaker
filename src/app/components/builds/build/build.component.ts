@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectService } from 'src/app/shared/utils/project.service';
+import { ProjectService } from 'src/app/shared/utils/services/project.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 import { MatDialogRef } from '@angular/material';
-import { ServerService } from 'src/app/shared/utils/server.service';
-import { BuildService } from 'src/app/shared/utils/build.service';
+import { ServerService } from 'src/app/shared/utils/services/server.service';
+import { BuildService } from 'src/app/shared/utils/services/build.service';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -20,7 +20,7 @@ export class BuildComponent implements OnInit {
   buildDate;
   buildExpireDate;
 
-  constructor(public service: BuildService, private projectService: ProjectService, private serverService: ServerService, private notificationService: NotificationService, public dialogRef: MatDialogRef<BuildComponent>) { }
+  constructor(private service: BuildService, private projectService: ProjectService, private serverService: ServerService, private notificationService: NotificationService, private dialogRef: MatDialogRef<BuildComponent>) { }
 
   ngOnInit() {
 
@@ -81,7 +81,7 @@ export class BuildComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  setDates(){
+  setDates(){//this should be modified
 
     var today = new Date();
     var weekAfterToday = today.getTime()+60*60*24*7*1000;//add miliseconds for one week

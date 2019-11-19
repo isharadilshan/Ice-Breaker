@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ProjectService } from 'src/app/shared/utils/project.service';
+import { ProjectService } from 'src/app/shared/utils/services/project.service';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialogConfig } from '@angular/material';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { ProjectComponent } from '../project/project.component';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 import { AuthService } from 'src/app/shared/auth/auth.service';
+import { Project } from 'src/app/models/project';
 
 @Component({
   selector: 'app-project-list',
@@ -86,9 +87,4 @@ export class ProjectListComponent implements OnInit {
     }
   }
 
-}
-
-export class Project{
-  title: string;
-  code: string;
 }

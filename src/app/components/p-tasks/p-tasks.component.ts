@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { TaskService } from 'src/app/shared/utils/task.service';
+import { TaskService } from 'src/app/shared/utils/services/task.service';
 import { Task } from 'src/app/models/task';
 import { FilterService } from 'src/app/shared/utils/filter.service';
 import { ArraySplitterService } from '../../shared/utils/array-splitter.service';

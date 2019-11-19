@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectService } from '../../../shared/utils/project.service';
+import { ProjectService } from '../../../shared/utils/services/project.service';
 import { MatDialogRef } from '@angular/material';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 

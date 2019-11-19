@@ -5,20 +5,56 @@
 </mat-toolbar>
 <form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
   <mat-grid-list cols="2" rowHeight="300px">
-    <div class="controles-container">
-      <input type="hidden" formControlName="$key">
-      <mat-form-field>
-        <input formControlName="title" matInput placeholder="Title*">
-        <mat-error>This field is mandatory</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input formControlName="code" matInput placeholder="Code*">
-        <mat-error>This field is mandatory</mat-error>
-      </mat-form-field>
-      <div class="bottom-row">
-        <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
-        <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key">
+
+        <mat-form-field>
+          <mat-select formControlName="type" placeholder="Device Type">
+            <mat-option value="ipad">Ipad</mat-option>
+            <mat-option value="tab">Tab</mat-option>
+            <mat-option value="iphone">Iphone</mat-option>
+            <mat-option value="android">Android</mat-option>
+            <mat-option value="cable">Cable</mat-option>
+            <mat-option value="adapter">Adapter</mat-option>
+            <mat-option value="laptop">Laptop</mat-option>
+            <mat-option value="iot">IOT</mat-option>
+            <mat-option value="other">Other</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input formControlName="description" matInput placeholder="Description*">
+          <mat-error>This field is mandatory</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input formControlName="comments" matInput placeholder="Comments">
+        </mat-form-field>
       </div>
-    </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div class="controles-container">
+          <mat-form-field>
+            <mat-select formControlName="status" placeholder="Device Status*">
+              <mat-option value="excellent">Excellent</mat-option>
+              <mat-option value="good">Good</mat-option>
+              <mat-option value="scratches">Scratches</mat-option>
+              <mat-option value="damaged">Damaged</mat-option>
+              <mat-option value="notPoweringUp">Not Powering Up</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input formControlName="barcode" matInput placeholder="Barcode*">
+          </mat-form-field>
+
+          <div class="bottom-row">
+            <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+            <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+          </div>
+      </div>
+    </mat-grid-tile>
   </mat-grid-list>  
 </form>

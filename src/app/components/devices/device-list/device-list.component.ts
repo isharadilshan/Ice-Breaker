@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DeviceService } from 'src/app/shared/utils/device.service';
+import { DeviceService } from 'src/app/shared/utils/services/device.service';
 import { MatDialog, MatDialogConfig, MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 import { DeviceComponent } from '../device/device.component';
+import { Device } from 'src/app/models/device';
 
 @Component({
   selector: 'app-device-list',
@@ -17,8 +18,8 @@ export class DeviceListComponent implements OnInit {
   constructor(public authService: AuthService, private service: DeviceService, private dialog: MatDialog, private notificationService: NotificationService) { }
 
   searchKey: string;
-  listData: MatTableDataSource<Project>;
-  displayedColumns: string[] = ['title','code','actions'];
+  listData: MatTableDataSource<Device>;
+  displayedColumns: string[] = ['type','description','comments','status','actions'];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -87,11 +88,5 @@ export class DeviceListComponent implements OnInit {
       console.log("Error occurs when trying to sign out ///"+err);
     }
   }
-
-}
-
-export class Project{
-  title: string;
-  code: string;
 
 }

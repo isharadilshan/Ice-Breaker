@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialogConfig, MatDialog } from '@angular/material';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
-import { ServerService } from 'src/app/shared/utils/server.service';
+import { ServerService } from 'src/app/shared/utils/services/server.service';
 import { ServerComponent } from '../server/server.component';
+import { Server } from 'src/app/models/server';
 
 @Component({
   selector: 'app-server-list',
@@ -88,8 +89,3 @@ export class ServerListComponent implements OnInit {
 
 }
 
-export class Server{
-  title: string;
-  url: string;
-
-}
